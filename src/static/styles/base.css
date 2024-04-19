@@ -1,9 +1,10 @@
 :root
 {
-	--palette1: #35374B;
-	--palette2: #344955;
-	--palette3: #50727B;
-	--palette4: #78A083;
+	--palette1: rgb(53, 55, 75);
+	--palette1-transparent: rgba(53, 55, 75, 0.5);
+	--palette2: rgb(52, 73, 85);
+	--palette3: rgb(80, 114, 123);
+	--palette4: rgb(120, 160, 131);
 
 	--navbar-width: 5em;
 	--navbar-spacing: 0.5em;
@@ -69,6 +70,8 @@ p
 	margin-right: calc((var(--navbar-width) / 2) * -1);
 
 	background-color: var(--palette3);
+
+	cursor: pointer;
 }
 
 .navbar_button:is(.active)
@@ -76,6 +79,11 @@ p
 	background-color: var(--palette1);
 
 	color: white;
+}
+
+.navbar_button:not(.active):hover
+{
+	background-color: var(--palette1-transparent);
 }
 
 .navbar_button ion-icon
