@@ -21,7 +21,12 @@ sql = engine.connect()
 
 # The rest
 def load_file(path):
+	global EXECUTING_DIRECTORY
+
 	path = (EXECUTING_DIRECTORY / path).resolve()
+
+	ORIGINAL_EXECUTING_DIRECTORY = EXECUTING_DIRECTORY
+	EXECUTING_DIRECTORY = Path(path).parent.resolve()
 
 	try:
 		file = open(path)
@@ -32,6 +37,8 @@ def load_file(path):
 	except Exception as error:
 		print(error)
 		pass
+
+	EXECUTING_DIRECTORY = ORIGINAL_EXECUTING_DIRECTORY
 
 load_file("./scripts/util.py")
 load_file("./scripts/routes.py")

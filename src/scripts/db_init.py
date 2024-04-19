@@ -16,7 +16,7 @@ run_query("set FOREIGN_KEY_CHECKS = 1")
 
 # Initialize tables
 
-run_file("./scripts/db/tables.sql")
+run_file("./db/tables.sql")
 
 # Apply
 sql.commit()
