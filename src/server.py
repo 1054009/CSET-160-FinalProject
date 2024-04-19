@@ -26,7 +26,7 @@ def load_file(path):
 	try:
 		file = open(path)
 
-		exec(file.read())
+		exec(file.read(), globals())
 
 		file.close()
 	except:
