@@ -35,6 +35,7 @@ def load_file(path):
 
 load_file("./scripts/util.py")
 load_file("./scripts/routes.py")
+load_file("./scripts/db_init.py")
 
 # Brap you
 if __name__ == "__main__":
