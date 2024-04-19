@@ -29,7 +29,8 @@ def load_file(path):
 		exec(file.read(), globals())
 
 		file.close()
-	except:
+	except Exception as error:
+		print(error)
 		pass
 
 load_file("./scripts/util.py")
