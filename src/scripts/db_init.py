@@ -24,5 +24,27 @@ run_query("""
 	)
 """)
 
+run_query("""
+	create table `teachers`
+	(
+		`id` int unsigned auto_increment,
+		`user_id` int unsigned not null,
+
+		primary key (`id`),
+		foreign key (`user_id`) references `users` (`id`) on delete cascade on update restrict
+	)
+""")
+
+run_query("""
+	create table `students`
+	(
+		`id` int unsigned auto_increment,
+		`user_id` int unsigned not null,
+
+		primary key (`id`),
+		foreign key (`user_id`) references `users` (`id`) on delete cascade on update restrict
+	)
+""")
+
 # Apply
 sql.commit()
