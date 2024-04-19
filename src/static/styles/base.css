@@ -1,0 +1,105 @@
+:root
+{
+	--side-padding: 5em;
+
+	--navbar-height: 5em;
+	--footer-height: 5em;
+}
+
+/*
+*	Globals
+*/
+
+*
+{
+	font-family: sans-serif;
+
+	box-sizing: border-box;
+}
+
+html, body
+{
+	margin: 0;
+	padding: 0;
+
+	width: 100%;
+	height: 100%;
+}
+
+p
+{
+	margin: 0;
+}
+
+/*
+*	Classes
+*/
+
+.float_right
+{
+	float: right;
+
+	margin-left: auto;
+}
+
+.clearfix::after
+{
+	content: "";
+
+	clear: both;
+
+	display: table;
+}
+
+/*
+*	IDs
+*/
+
+#navbar
+{
+	width: 100%;
+	height: var(--navbar-height);
+
+	position: sticky;
+	top: 0;
+
+	padding-left: var(--side-padding);
+	padding-right: var(--side-padding);
+	padding-top: 1em;
+	padding-bottom: 1em;
+
+	border-bottom: 1px solid black;
+
+	display: flex;
+	align-items: center;
+}
+
+#body_block
+{
+	width: 100%;
+	min-height: calc(100% - (var(--navbar-height) + var(--footer-height)));
+
+	padding-left: var(--side-padding);
+	padding-right: var(--side-padding);
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+#footer
+{
+	width: 100%;
+	height: var(--footer-height);
+
+	position: sticky;
+	top: 0;
+
+	padding-left: var(--side-padding);
+	padding-right: var(--side-padding);
+	padding-top: 1em;
+	padding-bottom: 1em;
+
+	border-top: 1px solid black;
+
+	display: flex;
+	align-items: center;
+}

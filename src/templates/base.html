@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			{% block title %}
+			Awesome Test Website
+			{% endblock %}
+		</title>
+
+		<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename = 'img/favicon.ico') }}">
+
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'styles/base.css') }}">
+
+		{% block head %}
+		{% endblock %}
+	</head>
+
+	<body>
+		<div id="navbar">
+			<img id="logo" src="{{ url_for('static', filename = 'img/test.png') }}">
+			<h3>Welcome to Website</h3>
+
+			<div class="float_right clearfix">
+				<p>Very important stuff here yes</p>
+			</div>
+		</div>
+
+		<div id="body_block">
+			{% block body %}
+			{% endblock %}
+		</div>
+
+		<footer id="footer">
+			<p>Footer!</p>
+		</footer>
+	</body>
+</html>
