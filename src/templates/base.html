@@ -17,11 +17,24 @@
 
 	<body>
 		<div id="navbar">
-			<img id="logo" src="{{ url_for('static', filename = 'img/test.png') }}">
-			<h3>Welcome to Website</h3>
+			<!-- <img id="logo" src="{{ url_for('static', filename = 'img/test.png') }}"> -->
+			<ion-icon id="logo" name="shapes-outline"></ion-icon>
 
-			<div class="float_right clearfix">
-				<p>Very important stuff here yes</p>
+			<div>
+				<div class="navbar_button active">
+					<ion-icon name="document-text-outline"></ion-icon>
+					Tasks
+				</div>
+
+				<div class="navbar_button">
+					<ion-icon name="stats-chart-outline"></ion-icon>
+					Grades
+				</div>
+
+				<div class="navbar_button">
+					<ion-icon name="settings-outline"></ion-icon>
+					Settings
+				</div>
 			</div>
 		</div>
 
@@ -30,8 +43,7 @@
 			{% endblock %}
 		</div>
 
-		<footer id="footer">
-			<p>Footer!</p>
-		</footer>
+		<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+		<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 	</body>
 </html>

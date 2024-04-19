@@ -1,9 +1,12 @@
 :root
 {
-	--side-padding: 5em;
+	--palette1: #35374B;
+	--palette2: #344955;
+	--palette3: #50727B;
+	--palette4: #78A083;
 
-	--navbar-height: 5em;
-	--footer-height: 5em;
+	--navbar-width: 5em;
+	--navbar-spacing: 0.5em;
 }
 
 /*
@@ -26,6 +29,11 @@ html, body
 	height: 100%;
 }
 
+body
+{
+	background-color: var(--palette1);
+}
+
 p
 {
 	margin: 0;
@@ -34,13 +42,6 @@ p
 /*
 *	Classes
 */
-
-.float_right
-{
-	float: right;
-
-	margin-left: auto;
-}
 
 .clearfix::after
 {
@@ -51,55 +52,76 @@ p
 	display: table;
 }
 
+.navbar_button
+{
+	text-align: center;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	gap: calc(var(--navbar-spacing) / 2);
+
+	padding-top: var(--navbar-spacing);
+	padding-bottom: var(--navbar-spacing);
+
+	margin-left: calc((var(--navbar-width) / 2) * -1);
+	margin-right: calc((var(--navbar-width) / 2) * -1);
+
+	background-color: var(--palette3);
+}
+
+.navbar_button:is(.active)
+{
+	background-color: var(--palette1);
+
+	color: white;
+}
+
+.navbar_button ion-icon
+{
+	font-size: calc((var(--navbar-width) - (var(--navbar-spacing) * 2)) / 2);
+}
+
 /*
 *	IDs
 */
 
 #navbar
 {
-	width: 100%;
-	height: var(--navbar-height);
+	width: var(--navbar-width);
+	height: 100%;
 
 	position: sticky;
 	top: 0;
 
-	padding-left: var(--side-padding);
-	padding-right: var(--side-padding);
-	padding-top: 1em;
-	padding-bottom: 1em;
-
-	border-bottom: 1px solid black;
+	padding-left: var(--navbar-spacing);
+	padding-right: var(--navbar-spacing);
+	padding-top: var(--navbar-spacing);
 
 	display: flex;
+	flex-direction: column;
 	align-items: center;
+
+	background-color: var(--palette3);
+
+	box-shadow: 0.1em 0 1em black;
+}
+
+#logo
+{
+	font-size: calc(var(--navbar-width) - (var(--navbar-spacing) * 2));
+
+	margin-bottom: var(--navbar-spacing);
 }
 
 #body_block
 {
 	width: 100%;
-	min-height: calc(100% - (var(--navbar-height) + var(--footer-height)));
+	min-height: 100%;
 
 	padding-left: var(--side-padding);
 	padding-right: var(--side-padding);
 	padding-top: 1em;
 	padding-bottom: 1em;
-}
-
-#footer
-{
-	width: 100%;
-	height: var(--footer-height);
-
-	position: sticky;
-	top: 0;
-
-	padding-left: var(--side-padding);
-	padding-right: var(--side-padding);
-	padding-top: 1em;
-	padding-bottom: 1em;
-
-	border-top: 1px solid black;
-
-	display: flex;
-	align-items: center;
 }
