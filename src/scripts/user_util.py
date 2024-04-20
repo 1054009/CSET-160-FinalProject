@@ -7,12 +7,7 @@ def user_exists(email_address):
 	if len(user) < 1:
 		return False
 
-	user = user[0]
-
-	if not user.id or not user.id.isnumeric():
-		return False
-
-	return user.id
+	return user[0].id
 
 def validate_login(email_address, password):
 	if not user_exists(email_address):
