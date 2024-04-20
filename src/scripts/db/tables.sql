@@ -63,13 +63,13 @@ create table `assignment_question_options`
 create table `assignment_attempts`
 (
 	`id` int unsigned auto_increment,
-	`sudent_id` int unsigned not null,
+	`student_id` int unsigned not null,
 	`assignment_id` int unsigned not null,
 	`submission_date` datetime not null,
 	`graded` boolean not null,
 
 	primary key (`id`),
-	foreign key (`sudent_id`) references `students` (`id`) on delete cascade on update restrict,
+	foreign key (`student_id`) references `students` (`id`) on delete cascade on update restrict,
 	foreign key (`assignment_id`) references `assignments` (`id`) on delete cascade on update restrict
 );
 
