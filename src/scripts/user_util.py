@@ -24,7 +24,8 @@ def validate_login(email_address, password):
 	return hashlib.sha256(password.digest()) == stored_password[0].password
 
 def destroy_session(session):
-	if not session or not session.get("email_address"):
+	if not session:
 		return
 
-	del session["email_address"]
+	if session.get("user_id"): del session["user_id"]
+	if session.get("email_address"): del session["email_address"]
