@@ -9,15 +9,18 @@ def run_file(path, parameters = None):
 	return run_query(file.read(), parameters)
 
 def raw_get_query_rows(query_result):
+	if not query_result:
+		return []
+
 	better_rows = []
 
-	if not query_result: return better_rows
-	if not query_result.all(): return better_rows
-
-	for row in query_result.all():
+	for row in query_result:
 		better_rows.append(row._mapping)
 
 	return better_rows
 
 def get_query_rows(query, parameters = None):
-	return raw_get_query_rows(run_query(query, parameters).all())
+	query_result = run_query(query, parameters)
+	if not query_result: return []
+
+	return raw_get_query_rows(query_result.all())
