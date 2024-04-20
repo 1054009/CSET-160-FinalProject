@@ -27,3 +27,9 @@ def validate_login(email_address, password):
 	stored_password = run_query(f"select `password` from `users` where `email_address` = {email_address}").first()[0]
 
 	return hashlib.sha256(password.digest()) == stored_password
+
+def destroy_session(session):
+	if not session or not session.get("email_address"):
+		return
+
+	del session["email_address"]
