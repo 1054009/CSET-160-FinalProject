@@ -8,14 +8,24 @@ def run_file(path, parameters = None):
 
 	return run_query(file.read(), parameters)
 
+def get_query_rows(query_result):
+	better_rows = []
+
+	if not query_result: return better_rows
+	if not query_result.all(): return better_rows
+
+	for row in query_result.all():
+		better_rows.append(row._mapping)
+
+	return better_rows
+
 def user_exists(email_address):
-	user = run_query(f"select * from `users` where `email_address` = {email_address}")
+	user = get_query_rows(run_query(f"select * from `users` where `email_address` = {email_address}"))
 
-	if not user: return False
-	if not user.first(): return False
-	if not user.first()._mapping: return False
+	if len(user) < 1:
+		return False
 
-	user = user.first()._mapping
+	user = user[0]
 
 	if not user.id or not user.id.isnumeric():
 		return False
