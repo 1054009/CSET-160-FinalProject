@@ -24,6 +24,6 @@ def get_accounts(page = 1, per_page = 10):
 
 	page = clamp(page, min_page, max_page)
 
-	accounts = run_query(f"select * from `users` limit {per_page} offset {(page - 1) * per_page}").all()
+	accounts = get_query_rows(f"select * from `users` limit {per_page} offset {(page - 1) * per_page}")
 
 	return accounts, page, per_page, min_page, max_page
