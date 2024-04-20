@@ -43,7 +43,8 @@ def load_file(path):
 
 	EXECUTING_DIRECTORY = ORIGINAL_EXECUTING_DIRECTORY
 
-load_file("./scripts/util.py")
+load_file("./scripts/db_util.py")
+load_file("./scripts/user_util.py")
 load_file("./scripts/routes.py")
 load_file("./scripts/db_init.py")
 
