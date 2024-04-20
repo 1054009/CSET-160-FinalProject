@@ -27,3 +27,11 @@ def get_data(table, page = 1, per_page = 10):
 	data = get_query_rows(f"select * from `{table}` limit {per_page} offset {(page - 1) * per_page}")
 
 	return data, page, per_page, min_page, max_page
+
+def get_task_mode(mode):
+	mode = str(mode).strip().lower()
+
+	if mode in ( "add", "delete", "edit" ):
+		return mode
+	else:
+		return "invalid"
