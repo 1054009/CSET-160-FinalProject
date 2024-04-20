@@ -17,7 +17,7 @@ def get_accounts(page = 1, per_page = 10):
 	page = get_int(page, 1, 1)
 	per_page = get_int(per_page, 10, 10)
 
-	account_count = run_query("select count(*) from `users`")
+	account_count = run_query("select count(*) from `users`").first()[0]
 
 	min_page = 1
 	max_page = math.ceil(account_count / per_page)
