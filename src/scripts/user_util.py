@@ -1,5 +1,5 @@
 def sha_string(string):
-	return hashlib.sha256(string.encode("utf-8")).digest()
+	return hashlib.sha256(string.encode("utf-8")).hexdigest()
 
 def user_exists(email_address):
 	user = get_query_rows(f"select * from `users` where `email_address` = '{email_address}'")
