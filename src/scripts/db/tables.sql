@@ -31,6 +31,7 @@ create table `assignments`
 (
 	`id` int unsigned auto_increment,
 	`teacher_id` int unsigned not null,
+	`title` varchar(255) not null,
 	`due_date` datetime,
 
 	primary key (`id`),
