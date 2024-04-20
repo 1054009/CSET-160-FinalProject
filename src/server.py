@@ -1,13 +1,16 @@
 # Imports
 from pathlib import Path
+import hashlib
+import secrets
 
-from flask import Flask, render_template
+from flask import Flask, redirect, render_template, request, session
 from sqlalchemy import create_engine, text
 
 EXECUTING_DIRECTORY = Path(__file__).parent.resolve()
 
 # Initialize Flask
 app = Flask(__name__)
+app.secret_key = secrets.token_hex()
 
 # Connect to database
 DB_USERNAME = "root"
