@@ -17,6 +17,13 @@
 
 	<body>
 		{% if not no_navbar %}
+			<script>
+				function go_to_page(url)
+				{
+					top.location = url
+				}
+			</script>
+
 			<div id="navbar">
 				<!-- <img id="logo" src="{{ url_for('static', filename = 'img/test.png') }}"> -->
 				<ion-icon id="logo" name="shapes-outline"></ion-icon>
