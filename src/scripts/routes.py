@@ -43,6 +43,17 @@ def signup():
 				}
 			)
 
+			# Insert into students or teachers table
+			account_type = request.form.get("account_type")
+			user_id = user_exists(email_address)
+
+			run_query(
+				f"insert into `{account_type}` values ( NULL, :user_id )",
+				{
+					"user_id": user_id
+				}
+			)
+
 			sql.commit()
 
 			return redirect("/login")
