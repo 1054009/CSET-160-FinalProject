@@ -20,7 +20,7 @@ def get_accounts(page = 1, per_page = 10):
 	account_count = run_query("select count(*) from `users`").first()[0]
 
 	min_page = 1
-	max_page = math.ceil(account_count / per_page)
+	max_page = ceil(account_count / per_page)
 
 	page = clamp(page, min_page, max_page)
 
