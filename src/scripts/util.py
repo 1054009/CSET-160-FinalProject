@@ -39,8 +39,11 @@ def validate_login(email_address, password):
 	if not user_exists(email_address):
 		return False
 
-	password.encode("utf-8")
 	stored_password = get_query_rows(f"select `password` from `users` where `email_address` = {email_address}")
+	if len(stored_password) < 1:
+		return Flase
+
+	password.encode("utf-8")
 
 	return hashlib.sha256(password.digest()) == stored_password[0].password
 
