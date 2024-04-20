@@ -3,7 +3,7 @@
 	<head>
 		<title>
 			{% block title %}
-			Home
+			Awesome Test Website
 			{% endblock %}
 		</title>
 
@@ -16,32 +16,29 @@
 	</head>
 
 	<body>
-		<div id="navbar">
-			<!-- <img id="logo" src="{{ url_for('static', filename = 'img/test.png') }}"> -->
-			<ion-icon id="logo" name="shapes-outline"></ion-icon>
+		{% if not no_navbar %}
+			<div id="navbar">
+				<!-- <img id="logo" src="{{ url_for('static', filename = 'img/test.png') }}"> -->
+				<ion-icon id="logo" name="shapes-outline"></ion-icon>
 
-			<div>
-				<div class="navbar_button">
-					<ion-icon name="person-circle-outline"></ion-icon>
-					Account
-				</div>
+				<div>
+					<div class="navbar_button active">
+						<ion-icon name="document-text-outline"></ion-icon>
+						Tasks
+					</div>
 
-				<div class="navbar_button active">
-					<ion-icon name="document-text-outline"></ion-icon>
-					Tasks
-				</div>
+					<div class="navbar_button">
+						<ion-icon name="stats-chart-outline"></ion-icon>
+						Grades
+					</div>
 
-				<div class="navbar_button">
-					<ion-icon name="stats-chart-outline"></ion-icon>
-					Grades
-				</div>
-
-				<div class="navbar_button">
-					<ion-icon name="settings-outline"></ion-icon>
-					Settings
+					<div class="navbar_button">
+						<ion-icon name="settings-outline"></ion-icon>
+						Settings
+					</div>
 				</div>
 			</div>
-		</div>
+		{% endif %}
 
 		<div id="body_block">
 			{% block body %}
