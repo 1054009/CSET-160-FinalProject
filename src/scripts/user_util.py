@@ -1,5 +1,5 @@
 def user_exists(email_address):
-	user = get_query_rows(f"select * from `users` where `email_address` = {email_address}")
+	user = get_query_rows(f"select * from `users` where `email_address` = '{email_address}'")
 
 	if len(user) < 1:
 		return False
@@ -15,7 +15,7 @@ def validate_login(email_address, password):
 	if not user_exists(email_address):
 		return False
 
-	stored_password = get_query_rows(f"select `password` from `users` where `email_address` = {email_address}")
+	stored_password = get_query_rows(f"select `password` from `users` where `email_address` = '{email_address}'")
 	if len(stored_password) < 1:
 		return Flase
 
