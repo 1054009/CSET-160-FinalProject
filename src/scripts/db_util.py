@@ -20,4 +20,4 @@ def raw_get_query_rows(query_result):
 	return better_rows
 
 def get_query_rows(query, parameters = None):
-	return raw_get_query_rows(run_query(query, parameters))
+	return raw_get_query_rows(run_query(query, parameters).all())
