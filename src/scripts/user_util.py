@@ -2,6 +2,12 @@ def sha_string(string):
 	return hashlib.sha256(string.encode("utf-8")).hexdigest()
 
 def user_exists(email_address):
+	"""
+	:param str email_address: The email associated with a user
+	:return: The user id if the user account exists, False otherwise
+	:rtype: bool
+
+	"""
 	user = get_query_rows(f"select * from `users` where `email_address` = '{email_address}'")
 
 	if len(user) < 1:
