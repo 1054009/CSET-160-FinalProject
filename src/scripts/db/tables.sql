@@ -42,6 +42,7 @@ create table `assignment_questions`
 	`id` int unsigned auto_increment,
 	`assignment_id` int unsigned not null,
 	`text` text not null,
+	`type` enum ('oe', 'mc') not null,
 	`points` int unsigned not null,
 
 	primary key (`id`),
