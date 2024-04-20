@@ -3,6 +3,8 @@ from pathlib import Path
 import hashlib
 import secrets
 
+from math import ceil
+
 from flask import Flask, redirect, render_template, request, session
 from sqlalchemy import create_engine, text
 
@@ -45,6 +47,7 @@ def load_file(path):
 
 load_file("./scripts/db_util.py")
 load_file("./scripts/user_util.py")
+load_file("./scripts/functions.py")
 load_file("./scripts/routes.py")
 load_file("./scripts/db_init.py")
 
