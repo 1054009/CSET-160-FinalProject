@@ -15,7 +15,7 @@ def validate_login(email_address, password):
 
 	stored_password = get_query_rows(f"select `password` from `users` where `email_address` = '{email_address}'")
 	if len(stored_password) < 1:
-		return Flase
+		return False
 
 	return sha_string(password) == stored_password[0].password
 
