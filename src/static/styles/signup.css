@@ -1,0 +1,57 @@
+#body_block
+{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+form
+{
+	min-width: 50%;
+
+	display: flex;
+	flex-direction: column;
+
+	gap: 1em;
+
+	padding: 1em;
+
+	background-color: white;
+
+	text-align: center;
+
+	box-shadow: 0.1em 0 1em black;
+}
+
+#form_footer
+{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+input
+{
+	padding: 1em;
+}
+
+input:focus
+{
+	outline: none;
+}
+
+input[type=submit]
+{
+	background-color: var(--palette4);
+
+	border: none;
+
+	cursor: pointer;
+
+	min-width: 10em;
+}
+
+#alternate
+{
+	font-size: 0.9em;
+}
