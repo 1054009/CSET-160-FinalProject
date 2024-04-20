@@ -9,15 +9,18 @@ def run_file(path, parameters = None):
 	return run_query(file.read(), parameters)
 
 def user_exists(email_address):
-	data = run_query(f"select * from `users` where `email_address` = {email_address}")
+	user = run_query(f"select * from `users` where `email_address` = {email_address}")
 
-	if not data or not data.first():
+	if not user: return False
+	if not user.first(): return False
+	if not user.first()._mapping: return False
+
+	user = user.first()._mapping
+
+	if not user.id or not user.id.isnumeric():
 		return False
 
-	if not data["id"] or not data["id"].isnumeric():
-		return False
-
-	return True
+	return user.id
 
 def validate_login(email_address, password):
 	if not user_exists(email_address):
