@@ -1,3 +1,6 @@
+def sha_string(string):
+	return hashlib.sha256(string.encode("utf-8")).digest()
+
 def user_exists(email_address):
 	user = get_query_rows(f"select * from `users` where `email_address` = '{email_address}'")
 
@@ -19,9 +22,7 @@ def validate_login(email_address, password):
 	if len(stored_password) < 1:
 		return Flase
 
-	password.encode("utf-8")
-
-	return hashlib.sha256(password.digest()) == stored_password[0].password
+	return sha_string(password) == stored_password[0].password
 
 def destroy_session(session):
 	if not session:
