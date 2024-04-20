@@ -8,7 +8,7 @@ def run_file(path, parameters = None):
 
 	return run_query(file.read(), parameters)
 
-def get_query_rows(query_result):
+def raw_get_query_rows(query_result):
 	better_rows = []
 
 	if not query_result: return better_rows
@@ -19,8 +19,11 @@ def get_query_rows(query_result):
 
 	return better_rows
 
+def get_query_rows(query, parameters = None):
+	return raw_get_query_rows(run_query(query, parameters))
+
 def user_exists(email_address):
-	user = get_query_rows(run_query(f"select * from `users` where `email_address` = {email_address}"))
+	user = get_query_rows(f"select * from `users` where `email_address` = {email_address}")
 
 	if len(user) < 1:
 		return False
@@ -37,9 +40,9 @@ def validate_login(email_address, password):
 		return False
 
 	password.encode("utf-8")
-	stored_password = run_query(f"select `password` from `users` where `email_address` = {email_address}").first()[0]
+	stored_password = get_query_rows(f"select `password` from `users` where `email_address` = {email_address}")
 
-	return hashlib.sha256(password.digest()) == stored_password
+	return hashlib.sha256(password.digest()) == stored_password[0].password
 
 def destroy_session(session):
 	if not session or not session.get("email_address"):
