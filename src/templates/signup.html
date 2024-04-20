@@ -18,6 +18,10 @@ Awesome Test Website - Sign Up
 	<input type="password" name="password" placeholder="Password">
 	<input type="password" name="password_verify" placeholder="Verify Password">
 
+	{% if error %}
+		<p id="error">{{ error }}</p>
+	{% endif %}
+
 	<div id="form_footer">
 		<p id="alternate">Already have an account? <a href="/login/" target="_parent">Login</a></p>
 

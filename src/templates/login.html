@@ -15,6 +15,10 @@ Awesome Test Website - Login
 	<input type="email" name="email_address" placeholder="Email Address">
 	<input type="password" name="password" placeholder="Password">
 
+	{% if error %}
+		<p id="error">{{ error }}</p>
+	{% endif %}
+
 	<div id="form_footer">
 		<p id="alternate">Don't have an account? <a href="/signup/" target="_parent">Sign Up</a></p>
 

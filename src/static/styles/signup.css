@@ -23,6 +23,11 @@ form
 	box-shadow: 0.1em 0 1em black;
 }
 
+#error
+{
+	color: red;
+}
+
 #form_footer
 {
 	display: flex;
