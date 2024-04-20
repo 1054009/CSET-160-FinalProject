@@ -6,7 +6,7 @@ def home():
 
 		return redirect("/login")
 
-	return render_template("home.html")
+	return render_template("home.html", account_type = session.get("account_type"))
 
 @app.route("/signup/", methods = [ "GET", "POST" ])
 def signup():
@@ -81,6 +81,9 @@ def login():
 		if validate_login(email_address, password):
 			session["user_id"] = user_id
 			session["email_address"] = email_address
+
+			account_type = get_account_type(user_id)
+			session["account_type"] = account_type
 
 			return redirect("/home")
 		else:
