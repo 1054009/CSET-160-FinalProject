@@ -14,10 +14,14 @@ def validate_login(email_address, password):
 		return False
 
 	stored_password = get_query_rows(f"select `password` from `users` where `email_address` = '{email_address}'")
+
 	if len(stored_password) < 1:
 		return False
 
-	return sha_string(password) == stored_password[0].password
+	stored_password = stored_password[0].password
+	stored_password = stored_password.decode("utf-8")
+
+	return sha_string(password) == stored_password
 
 def destroy_session(session):
 	if not session:
