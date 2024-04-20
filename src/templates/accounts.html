@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+Awesome Test Website - Accounts
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="pagination_bar">
+
+		</div>
+		<div class="grid">
+			{% for account in accounts %}
+				<div class="account">
+					{{ account["email_address"] }}
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+
+{% endblock %}
