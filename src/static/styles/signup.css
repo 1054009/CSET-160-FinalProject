@@ -23,6 +23,11 @@ form
 	box-shadow: 0.1em 0 1em black;
 }
 
+#name_inputs *
+{
+	flex: 1;
+}
+
 #error
 {
 	color: red;
