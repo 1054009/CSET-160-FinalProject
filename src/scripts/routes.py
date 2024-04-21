@@ -14,7 +14,7 @@ def navigate_to_manage():
 	page = request.args.get("page")
 	per_page = request.args.get("per_page")
 
-	tasks, page, per_page, min_page, max_page = get_data('users', page, per_page)
+	tasks, page, per_page, min_page, max_page = get_data('assignments', page, per_page)
 
 	return render_template(
 		"task_view.html",
