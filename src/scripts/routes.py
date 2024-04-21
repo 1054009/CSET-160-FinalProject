@@ -9,7 +9,7 @@ def home():
 	return render_template("home.html", account_type = session.get("account_type"))
 
 # Manage page
-@app.route("/tasks/manage", methods = [ "GET" ])
+@app.route("/tasks/manage/", methods = [ "GET" ])
 def navigate_to_manage():
 	page = request.args.get("page")
 	per_page = request.args.get("per_page")
