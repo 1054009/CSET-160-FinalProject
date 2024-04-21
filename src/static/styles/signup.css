@@ -23,6 +23,14 @@ form
 	box-shadow: 0.1em 0 1em black;
 }
 
+#account_type
+{
+	display: flex;
+	align-items: center;
+
+	gap: 1em;
+}
+
 #error
 {
 	color: red;
@@ -35,12 +43,16 @@ form
 	align-items: center;
 }
 
-input
+input, select
 {
 	padding: 1em;
+
+	background-color: white;
+
+	border: 1px solid black;
 }
 
-input:focus
+input:focus, select:focus
 {
 	outline: none;
 }
