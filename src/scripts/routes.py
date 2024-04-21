@@ -8,6 +8,31 @@ def home():
 
 	return render_template("home.html", account_type = session.get("account_type"))
 
+# Manage page
+@app.route("/tasks/manage", methods = [ "GET" ])
+def navigate_to_manage():
+	page = request.args.get("page")
+	per_page = request.args.get("per_page")
+
+	tasks, page, per_page, min_page, max_page = get_data('users', page, per_page)
+
+	return render_template(
+		"task_view.html",
+		mode = "view",
+		tasks = tasks,
+		page = page,
+		per_page = per_page,
+		min_page = min_page,
+		max_page = max_page
+	)
+
+@app.route("/tasks/manage/<mode>")
+def edit_task(mode):
+	mode = get_task_mode(mode)
+
+	# task_id = request.form.get("task_id")
+
+
 @app.route("/signup/", methods = [ "GET", "POST" ])
 def signup():
 	destroy_session(session) # Log them out
@@ -96,7 +121,7 @@ def view_accounts():
 	page = request.args.get("page")
 	per_page = request.args.get("per_page")
 
-	accounts, page, per_page, min_page, max_page = get_accounts(page, per_page)
+	accounts, page, per_page, min_page, max_page = get_data('users', page, per_page)
 
 	return render_template(
 		"accounts.html",
