@@ -23,14 +23,6 @@ form
 	box-shadow: 0.1em 0 1em black;
 }
 
-#account_type
-{
-	display: flex;
-	align-items: center;
-
-	gap: 1em;
-}
-
 #error
 {
 	color: red;

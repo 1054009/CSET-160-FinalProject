@@ -46,6 +46,14 @@ p
 *	Classes
 */
 
+.flexbox
+{
+	display: flex;
+	align-items: center;
+
+	gap: 1em;
+}
+
 .float_right
 {
 	float: right;
