@@ -8,7 +8,7 @@ Awesome Test Website - Tasks
 <script type="text/javascript">
 	function set_page(page = 1, per_page = 10)
 	{
-		top.location = `../tasks/manage/?page=${page}&per_page=${per_page}`
+		top.location = `/tasks/manage/?page=${page}&per_page=${per_page}`
 	}
 </script>
 
@@ -60,11 +60,11 @@ Awesome Test Website - Tasks
 
 <div id="task_view_body">
 	{% for task in tasks %}
-	<a href="{{ "/tasks/view/" + task["id"] | string }}">
-		<div class="task_button">
-			<h2>{{ task["title"] }}</h2>
-		</div>
-	</a>
+		<a href="{{ "/tasks/view/" + task["id"] | string }}">
+			<div class="task_button">
+				<h2>{{ task["title"] }}</h2>
+			</div>
+		</a>
 	{% endfor %}
 </div>
 {% endblock %}
