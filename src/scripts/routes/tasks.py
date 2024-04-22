@@ -35,13 +35,15 @@ def edit_task(mode):
 				if due_date:
 					due_date = due_date.replace("T", " ") + ":59"
 				else:
-					due_date = None
-				message = f"Task {request.form.get("title")} has been created"
+					due_date = "9999-12-31 00:00:00"
 
-				run_query(f"insert into `assignments` values(NULL, {teacher_id}, {title}, {due_date})")
+				message = f"Task {title} has been created"
 
-		# this is not working
-		sql.commit()
+				run_query(
+					f"insert into `assignments` values(NULL, {teacher_id}, '{title}', '{due_date}')"
+				)
+
+				sql.commit()
 
 	return render_template(
 		"task_manage.html",
