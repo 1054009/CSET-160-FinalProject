@@ -28,12 +28,12 @@ def add_assignment(assignment_id = 1):
 
 	# TODO: Make sure it's a teacher account
 
-	# # Get basic information
+	# Get basic information
 	assignment_data = get_query_rows(f"select * from `assignments` where `id` = {assignment_id}")
 	if len(assignment_data) < 1:
 		return redirect("/home") # TODO: Show error
 
-	# # Get questions
+	# Get questions
 	assignment_questions = get_query_rows(f"select * from `assignment_questions` where `assignment_id` = {assignment_id}")
 
 	return render_template(
