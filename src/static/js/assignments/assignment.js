@@ -13,6 +13,7 @@ export class Assignment
 		this.m_strTitle = helper.getString(data.get("title"), "INVALID ASSIGNMENT")
 		this.m_strDueDate = helper.getString(data.get("due_date"), "9999-12-31 00:00:00") // TODO: Make this an actual date object
 		this.m_Questions = data.get("questions") || []
+		this.m_QuestionOptions = data.get("question_options") || {}
 	}
 
 	setTitle(title)
