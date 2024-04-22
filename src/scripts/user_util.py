@@ -86,3 +86,15 @@ def destroy_session(session):
 
 	if session.get("user_id"): del session["user_id"]
 	if session.get("email_address"): del session["email_address"]
+
+def validate_session(session):
+	if not session:
+		return False
+
+	user_id = session.get("user_id")
+	email_address = session.get("email_address")
+
+	if not user_id or not email_address:
+		return False
+
+	return user_id == user_exists(email_address)
