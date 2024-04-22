@@ -7,6 +7,16 @@ input, select, button
 	border: 1px solid black;
 }
 
+select:hover, button:hover
+{
+	background-color: lightgray;
+}
+
+select, button
+{
+	cursor: pointer;
+}
+
 input:focus, select:focus, button:focus
 {
 	outline: none;
