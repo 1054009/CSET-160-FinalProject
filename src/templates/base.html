@@ -17,39 +17,9 @@
 
 	<body>
 		{% if not no_navbar %}
-			<script>
-				function go_to_page(url)
-				{
-					top.location = url
-				}
-			</script>
-
-			<div id="navbar">
-				<!-- <img id="logo" src="{{ url_for('static', filename = 'img/test.png') }}"> -->
-				<ion-icon id="logo" name="shapes-outline"></ion-icon>
-
-				<div>
-					<div class="navbar_button" onclick="go_to_page('/accounts')">
-						<ion-icon name="person-circle-outline"></ion-icon>
-						<p>Accounts</p>
-					</div>
-
-					<div class="navbar_button active" onclick="go_to_page('/home')">
-						<ion-icon name="document-text-outline"></ion-icon>
-						<p>Tasks</p>
-					</div>
-
-					<div class="navbar_button">
-						<ion-icon name="stats-chart-outline"></ion-icon>
-						<p>Grades</p>
-					</div>
-
-					<div class="navbar_button">
-						<ion-icon name="settings-outline"></ion-icon>
-						<p>Settings</p>
-					</div>
-				</div>
-			</div>
+			{% block navbar %}
+				{% include 'navbar.html' %}
+			{% endblock %}
 		{% endif %}
 
 		<div id="body_block">

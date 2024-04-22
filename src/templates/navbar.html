@@ -1,0 +1,31 @@
+{% set navbar_data = [
+	['Accounts', '/accounts', 'person-circle-outline'],
+	['Tasks', '/home', 'document-text-outline'],
+	['Grades', '/accounts', 'stats-chart-outline'],
+	['Settings', '/accounts', 'settings-outline']
+] %}
+
+<script>
+	function go_to_page(url)
+	{
+		top.location = url
+	}
+</script>
+
+<div id="navbar">
+	<!-- <img id="logo" src="{{ url_for('static', filename = 'img/test.png') }}"> -->
+	<ion-icon id="logo" name="shapes-outline"></ion-icon>
+
+	<div>
+		{% for page in navbar_data %}
+			{% set page_name = page[0] %}
+			{% set page_url = page[1] %}
+			{% set page_icon = page[2] %}
+
+			<div class="navbar_button" onclick="go_to_page('{{ page_url | string }}')">
+				<ion-icon name="{{ page_icon | string }}"></ion-icon>
+				<p>{{ page_name }}</p>
+			</div>
+		{% endfor %}
+	</div>
+</div>
