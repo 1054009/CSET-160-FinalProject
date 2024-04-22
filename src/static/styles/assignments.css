@@ -1,0 +1,41 @@
+#editor_container
+{
+	width: 100%;
+	height: 100%;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#editor
+{
+	width: 90%;
+	height: 90%;
+
+	padding: 1em;
+
+	display: flex;
+	flex-direction: column;
+
+	gap: 1em;
+
+	background-color: white;
+
+	box-shadow: 0.1em 0 1em black;
+}
+
+#question_container
+{
+	display: flex;
+	flex-direction: column;
+
+	gap: 1em;
+}
+
+#question_display
+{
+	padding: 1em;
+
+	border: 1px solid black;
+}
