@@ -1,0 +1,3 @@
+[submodule "src/static/js/JSModules"]
+	path = src/static/js/JSModules
+	url = https://github.com/1054009/JSModules
