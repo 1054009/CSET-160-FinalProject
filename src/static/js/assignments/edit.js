@@ -1,5 +1,4 @@
 assignment = {}
-assignment.data = new Map()
 
 assignment.add_question = () =>
 {
@@ -14,7 +13,6 @@ assignment.update_display = () =>
 	const question_display = document.querySelector("#question_display")
 	if (!question_display) return
 
-	assignment_display.data = assignment.data
 	assignment_display.render_to(question_display)
 }
 
