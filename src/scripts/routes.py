@@ -46,14 +46,7 @@ def edit_task(mode):
 					due_date = None
 				message = f"Task {request.form.get("title")} has been created"
 
-				run_query(
-					f"insert into `assignments` values(NULL, {teacher_id}, :title, :due_date)",
-					{
-						"teacher_id": teacher_id,
-						"title": title,
-						"due_date": due_date
-					}
-				)
+				run_query(f"insert into `assignments` values(NULL, {teacher_id}, {title}, {due_date})")
 
 		# this is not working
 		sql.commit()
