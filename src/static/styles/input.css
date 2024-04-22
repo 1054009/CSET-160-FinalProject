@@ -1,4 +1,4 @@
-input, select
+input, select, button
 {
 	padding: 1em;
 
@@ -7,7 +7,7 @@ input, select
 	border: 1px solid black;
 }
 
-input:focus, select:focus
+input:focus, select:focus, button:focus
 {
 	outline: none;
 }
