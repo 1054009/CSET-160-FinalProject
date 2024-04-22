@@ -142,7 +142,7 @@ p
 
 #body_block
 {
-	width: calc(100% - var(--navbar-width));
+	width:100%;
 	min-height: 100%;
 
 	padding-left: var(--side-padding);
