@@ -5,16 +5,44 @@ Awesome Test Website - Task Manage
 {% endblock %}
 
 {% block body %}
+<script>
+	function add_open_ended_template()
+	{
+		div = document.createElement("div")
+		div.classList.add("question_div")
+		div.classList.add("question_open_ended")
+
+		question = document.createElement("input")
+		question.type = "text"
+		question.placeholder = "Question"
+
+		response = document.createElement("textarea")
+
+		submit_button = document.querySelector("#submit_button")
+
+		task_form = document.querySelector("#task_form")
+
+		div.appendChild(question)
+		div.appendChild(response)
+		task_form.insertBefore(div, submit_button)
+	}
+</script>
+
 <h2>{{ message }}</h2>
 {% if mode == "add" %}
-	<form action="/tasks/manage/add" method="POST">
+	<form action="/tasks/manage/add" method="POST" id="task_form">
 		<label for="title">Title</label><br>
 		<input type="text" name="title" id="title" required><br>
 
 		<label for="due_date">Due date:</label><br>
 		<input type="datetime-local" name="due_date" id="due_date"><br>
 
-		<input type="submit" value="Add task">
+		<input type="submit" value="Add task" id="submit_button">
 	</form>
+
+	<div>
+		<button onclick="">Add Mutiple-choice question</button>
+		<button onclick="add_open_ended_template()">Add Open-ended question</button>
+	</div>
 {% endif %}
 {% endblock %}
