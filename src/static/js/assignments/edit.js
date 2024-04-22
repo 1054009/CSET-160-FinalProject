@@ -1,22 +1,18 @@
-assignment = {}
+// Imports
+import { Helper } from "../JSModules/helper.js"
+import { DOMBuilder } from "../JSModules/dom_builder.js"
 
-assignment.add_question = () =>
+import { Assignment } from "./assignment.js"
+
+// Globals
+const g_Helper = new Helper()
+var g_Assignment = null
+
+// Functions
+
+
+// Hooks
+g_Helper.hookEvent(window, "load", false, () =>
 {
-	const question_type = document.querySelector("#question_type")
-	if (!question_type) return
-
-	const type = question_type.value
-}
-
-assignment.update_display = () =>
-{
-	const question_display = document.querySelector("#question_display")
-	if (!question_display) return
-
-	assignment_display.render_to(question_display)
-}
-
-window.addEventListener("load", () =>
-{
-	assignment.update_display()
+	g_Assignment = new Assignment(g_AssignmentData)
 })

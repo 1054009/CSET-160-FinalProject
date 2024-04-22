@@ -11,11 +11,20 @@ Awesome Test Website - Create Assignment
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'styles/input.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'styles/questions.css') }}">
 
-<script type="text/javascript" src="{{ url_for('static', filename = 'js/assignments/display.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename = 'js/assignments/edit.js') }}"></script>
+<script type="module" src="{{ url_for('static', filename = 'js/assignments/display.js') }}"></script>
+<script type="module" src="{{ url_for('static', filename = 'js/assignments/edit.js') }}"></script>
 {% endblock %}
 
 {% block body %}
+<script>
+	g_AssignmentData = new Map()
+	g_AssignmentData.set("id", {{ assignment_data['id'] }})
+	g_AssignmentData.set("teacher_id", {{ assignment_data['teacher_id'] }})
+	g_AssignmentData.set("title", "{{ assignment_data['title'] | string }}")
+	g_AssignmentData.set("due_date", "{{ assignment_data['due_date'] | string }}")
+	g_AssignmentData.set("questions", {{ assignment_questions }}) // TODO: Make sure to check this
+</script>
+
 <div id="editor_container">
 	<div id="editor">
 		<div class="flexbox">
@@ -40,7 +49,7 @@ Awesome Test Website - Create Assignment
 					<option value="mc">Multiple Choice</option>
 				</select>
 
-				<button onclick="assignment.add_question()">Add Question</button>
+				<button onclick="">Add Question</button>
 				<button class="float_right">Delete Question</button>
 			</div>
 
@@ -53,12 +62,4 @@ Awesome Test Website - Create Assignment
 		</div>
 	</div>
 </div>
-
-<script>
-	assignment_display.import(
-		{{ assignment_id }},
-		{{ assignment_data }},
-		{{ assignment_questions }}
-	)
-</script>
 {% endblock %}
