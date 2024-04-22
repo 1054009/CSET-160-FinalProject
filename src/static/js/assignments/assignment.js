@@ -49,4 +49,9 @@ export class Assignment
 	{
 		return this.m_Questions
 	}
+
+	getQuestion(index)
+	{
+		return this.getQuestions()[index]
+	}
 }
