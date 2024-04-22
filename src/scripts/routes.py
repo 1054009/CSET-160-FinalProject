@@ -105,14 +105,7 @@ def signup():
 			if not account_type in ("students", "teachers"):
 				raise Exception("Invalid account type")
 
-			user_id = user_exists(email_address)
-
-			run_query(
-				f"insert into `{account_type}` values ( NULL, :user_id )",
-				{
-					"user_id": user_id
-				}
-			)
+			run_query(f"insert into `{account_type}` values ( NULL, {user_exists(email_address)} )")
 
 			sql.commit()
 
