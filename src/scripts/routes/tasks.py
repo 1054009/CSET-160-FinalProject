@@ -53,6 +53,32 @@ def edit_task(mode):
 
 				sql.commit()
 
+
+				questions = []
+				points = []
+				num = 1
+
+				while True:
+
+					if not request.form.get(f"question{num}"):
+						break
+
+					questions.append(request.form.get(f"question{num}"))
+					points.append(request.form.get(f"points{num}"))
+
+					num += 1
+
+				assignment_id = get_query_rows("select max(`id`) from `assignments`")[0]['max(`id`)']
+
+				for i in range(len(questions)):
+					question = questions[i]
+					points = points[i]
+
+					run_query(f"insert into `assignment_questions` values({assignment_id}, '{question}', 'oe', {points})")
+
+					sql.commit()
+
+
 	return render_template(
 		"task_manage.html",
 		mode = mode,
