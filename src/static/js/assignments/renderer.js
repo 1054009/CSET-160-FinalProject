@@ -4,10 +4,13 @@ import { Assignment } from "./assignment.js"
 
 export class AssignmentRenderer
 {
-	constructor(assignment)
+	constructor()
 	{
-		this.m_Assignment = assignment
+		Helper.assignToObject(this)
 	}
 
+	renderAssignment(assignment, renderTarget)
+	{
 
+	}
 }
