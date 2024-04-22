@@ -9,10 +9,10 @@ Awesome Test Website - Task Manage
 {% if mode == "add" %}
 	<form action="/tasks/manage/add" method="POST">
 		<label for="title">Title</label><br>
-		<input type="text" name="title" required><br>
+		<input type="text" name="title" id="title" required><br>
 
 		<label for="due_date">Due date:</label><br>
-		<input type="datetime-local" name="due_date"><br>
+		<input type="datetime-local" name="due_date" id="due_date"><br>
 
 		<input type="submit" value="Add task">
 	</form>
