@@ -22,7 +22,13 @@
 			{% set page_url = page[1] %}
 			{% set page_icon = page[2] %}
 
-			<div class="navbar_button" onclick="go_to_page('{{ page_url | string }}')">
+			{% set class_suffix = "" %}
+
+			{% if active_page == page_name %}
+				{% set class_suffix = "active" %}
+			{% endif %}
+
+			<div class="navbar_button {{ class_suffix | string }}" onclick="go_to_page('{{ page_url | string }}')">
 				<ion-icon name="{{ page_icon | string }}"></ion-icon>
 				<p>{{ page_name }}</p>
 			</div>
