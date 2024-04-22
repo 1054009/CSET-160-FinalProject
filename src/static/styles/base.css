@@ -59,6 +59,11 @@ p
 	flex: 1;
 }
 
+.wider
+{
+	min-width: 10em;
+}
+
 .float_right
 {
 	float: right;
