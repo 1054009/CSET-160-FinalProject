@@ -21,6 +21,9 @@ def login():
 			account_type = get_account_type(user_id)
 			session["account_type"] = account_type
 
+			session["student_id"] = get_student_id(user_id)
+			session["teacher_id"] = get_teacher_id(user_id)
+
 			return redirect("/home")
 		else:
 			return render_template(
