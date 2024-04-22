@@ -54,6 +54,11 @@ p
 	gap: 1em;
 }
 
+.flex_width
+{
+	flex: 1;
+}
+
 .float_right
 {
 	float: right;
