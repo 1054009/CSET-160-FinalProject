@@ -38,7 +38,6 @@ def add_assignment(assignment_id = 1):
 
 	return render_template(
 		"assignment_edit.html",
-		assignment_id = assignment_id,
 		assignment_data = assignment_data[0],
 		assignment_questions = assignment_questions
 	)
