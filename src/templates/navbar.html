@@ -1,16 +1,11 @@
 {% set navbar_data = [
-	['Accounts', '/accounts', 'person-circle-outline'],
-	['Tasks', '/home', 'document-text-outline'],
-	['Grades', '/accounts', 'stats-chart-outline'],
-	['Settings', '/accounts', 'settings-outline']
+	['Accounts', 'accounts', 'person-circle-outline'],
+	['Tasks', 'home', 'document-text-outline'],
+	['Grades', 'home', 'stats-chart-outline'],
+	['Settings', 'home', 'settings-outline']
 ] %}
 
-<script>
-	function go_to_page(url)
-	{
-		top.location = url
-	}
-</script>
+<script type="text/javascript" src="{{ url_for('static', filename = 'js/nav.js') }}"></script>
 
 <div id="navbar">
 	<ion-icon id="logo" name="shapes-outline"></ion-icon>
@@ -27,7 +22,7 @@
 				{% set class_suffix = "active" %}
 			{% endif %}
 
-			<div class="navbar_button {{ class_suffix | string }}" onclick="go_to_page('{{ page_url | string }}')">
+			<div class="navbar_button {{ class_suffix | string }}" onclick="set_top('{{ page_url | string }}')">
 				<ion-icon name="{{ page_icon | string }}"></ion-icon>
 				<p>{{ page_name }}</p>
 			</div>
