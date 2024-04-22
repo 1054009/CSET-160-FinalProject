@@ -15,6 +15,16 @@ export class Assignment
 		this.m_Questions = data.get("questions") || []
 	}
 
+	setTitle(title)
+	{
+		this.m_strTitle = this.getHelper().getString(title, "INVALID ASSIGNMENT")
+	}
+
+	setDueDate(dueDate)
+	{
+		this.m_strDueDate = this.getHelper().getString(dueDate, "9999-12-31 00:00:00") // TODO: Make this an actual date object
+	}
+
 	getID()
 	{
 		return this.m_iID
