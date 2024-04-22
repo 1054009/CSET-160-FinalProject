@@ -29,7 +29,7 @@ Awesome Test Website - Create Assignment
 	<div id="editor">
 		<div class="flexbox">
 			<p class="flex_fill">Assignment Name</p>
-			<input id="input_title" class="flex_fill" type="text" name="assignment_name" value="{{ assignment_data['title'] | string }}" placeholder="Assignment Name" onkeypress="this.onchange(event)" onpaste="this.onchange(event)" oninput="this.onchange(event)">
+			<input id="input_title" class="flex_fill" type="text" name="assignment_name" value="{{ assignment_data['title'] | string }}" placeholder="Assignment Name" onkeypress="this.dispatchEvent(new Event('change'))" onpaste="this.dispatchEvent(new Event('change'))" oninput="this.dispatchEvent(new Event('change'))">
 		</div>
 
 		<div class="flexbox">
