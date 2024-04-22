@@ -4,10 +4,11 @@ import hashlib
 import math
 import secrets
 
-from flask import Flask, redirect, render_template, request, session
+from flask import Flask, redirect, render_template, request, session, send_file, url_for
 from sqlalchemy import create_engine, text
 
-EXECUTING_DIRECTORY = Path(__file__).parent.resolve()
+SERVER_DIRECTORY = Path(__file__).parent.resolve()
+EXECUTING_DIRECTORY = SERVER_DIRECTORY
 
 # Initialize Flask
 app = Flask(__name__)
