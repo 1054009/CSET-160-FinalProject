@@ -1,0 +1,35 @@
+{% set active_page = "Grades" %}
+
+{% extends "base.html" %}
+
+{% block title %}
+Awesome Test Website - Home
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename = '/styles/tasks.css') }}">
+{% endblock %}
+
+{% block body %}
+<div id="tasks_body">
+	{% if account_type == "teacher" %}
+		<div class="task_button">
+			Create Task
+		</div>
+
+		<div class="task_button">
+			View Tasks
+		</div>
+
+	{% elif account_type == "student" %}
+		<div class="task_button">
+			All Tasks
+		</div>
+
+		<div class="task_button">
+			Tasks Taken
+		</div>
+
+	{% endif %}
+</div>
+{% endblock %}
