@@ -3,6 +3,10 @@
 # Manage page
 @app.route("/tasks/manage/", methods = [ "GET" ])
 def navigate_to_manage():
+	if not validate_session(session):
+		destroy_session(session)
+		return redirect("/login")
+
 	page = request.args.get("page")
 	per_page = request.args.get("per_page")
 
@@ -20,6 +24,10 @@ def navigate_to_manage():
 
 @app.route("/tasks/manage/<mode>", methods=[ "GET", "POST" ])
 def edit_task(mode):
+	if not validate_session(session):
+		destroy_session(session)
+		return redirect("/login")
+
 	mode = get_task_mode(mode)
 
 	message = ""
