@@ -36,10 +36,19 @@ def add_assignment(assignment_id = 1):
 	# Get questions
 	assignment_questions = get_query_rows(f"select * from `assignment_questions` where `assignment_id` = {assignment_id}")
 
+	# Get question options
+	assignment_question_options = {}
+
+	for question in assignment_questions:
+		question_id = question.get("id")
+
+		assignment_question_options[question_id] = get_query_rows(f"select * from `assignment_question_options` where `question_id` = {question_id}")
+
 	return render_template(
 		"assignment_edit.html",
 		assignment_data = assignment_data[0],
-		assignment_questions = assignment_questions
+		assignment_questions = assignment_questions,
+		assignment_question_options = assignment_question_options
 	)
 
 @app.route("/assignments/edit/", methods = [ "POST" ])
