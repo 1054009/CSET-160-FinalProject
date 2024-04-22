@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}
+Awesome Test Website - Take Task
+{% endblock %}
+
+{% block body %}
+<script>
+	function set_response_num(response, num)
+	{
+		response.name = `response${num}`
+	}
+</script>
+
+<form action="" method = "POST">
+	{% for i in range(assignment_questions | length) %}
+		<div class="student_question_container">
+			<h3 class="student_question_text">{{ assignment_questions["text"] }}</h3>
+			<h3 class="student_question_points">{{ assignment_questions["points"] }}</h3>
+
+			{% if assignment_questions["type"] == "oe"}
+				<textarea name="set_response_num(this, {{ i | string }})" id="" cols="30" rows="10"></textarea>
+			{% endif %}
+		</div>
+	{% endfor %}
+
+	<input type="submit" value="Submit">
+</form>
+{% endblock %}
