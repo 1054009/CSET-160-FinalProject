@@ -1,0 +1,22 @@
+input, select
+{
+	padding: 1em;
+
+	background-color: white;
+
+	border: 1px solid black;
+}
+
+input:focus, select:focus
+{
+	outline: none;
+}
+
+input[type=submit]
+{
+	background-color: var(--palette4);
+
+	border: none;
+
+	cursor: pointer;
+}

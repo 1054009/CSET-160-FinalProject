@@ -45,29 +45,6 @@ form
 	min-width: 10em;
 }
 
-input, select
-{
-	padding: 1em;
-
-	background-color: white;
-
-	border: 1px solid black;
-}
-
-input:focus, select:focus
-{
-	outline: none;
-}
-
-input[type=submit]
-{
-	background-color: var(--palette4);
-
-	border: none;
-
-	cursor: pointer;
-}
-
 #alternate
 {
 	font-size: 0.9em;
