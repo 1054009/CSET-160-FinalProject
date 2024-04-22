@@ -155,6 +155,10 @@ def login():
 
 @app.route("/accounts/", methods = [ "GET", "POST"])
 def view_accounts():
+	if not validate_session(session):
+		destroy_session(session)
+		return redirect("/login")
+
 	page = request.args.get("page")
 	per_page = request.args.get("per_page")
 
