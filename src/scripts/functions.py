@@ -20,7 +20,7 @@ def get_data(table, page = 1, per_page = 10):
 	count = run_query(f"select count(*) from `{table}`").first()[0]
 
 	min_page = 1
-	max_page = ceil(count / per_page)
+	max_page = math.ceil(count / per_page)
 
 	page = clamp(page, min_page, max_page)
 

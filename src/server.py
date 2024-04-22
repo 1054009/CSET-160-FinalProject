@@ -1,9 +1,8 @@
 # Imports
 from pathlib import Path
 import hashlib
+import math
 import secrets
-
-from math import ceil
 
 from flask import Flask, redirect, render_template, request, session
 from sqlalchemy import create_engine, text
