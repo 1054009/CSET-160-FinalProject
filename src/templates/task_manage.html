@@ -17,14 +17,22 @@ Awesome Test Website - Task Manage
 		question = document.createElement("input")
 		question.type = "text"
 		question.placeholder = "Question"
+		question.name = "question"
+
+		points = document.createElement("input")
+		points.type = "number"
+		points.placeholder = "Points"
+		points.name = "points"
 
 		response = document.createElement("textarea")
+		response.name = "response"
 
 		submit_button = document.querySelector("#submit_button")
 
 		task_form = document.querySelector("#task_form")
 
 		div.appendChild(question)
+		div.appendChild(points)
 		div.appendChild(response)
 		task_form.insertBefore(div, submit_button)
 	}
