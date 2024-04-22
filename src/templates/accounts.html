@@ -7,12 +7,8 @@ Awesome Test Website - Accounts
 {% endblock %}
 
 {% block body %}
-	<script type="text/javascript">
-		function set_page(page = 1, per_page = 10)
-		{
-			top.location = `../accounts/?page=${page}&per_page=${per_page}`
-		}
-	</script>
+	<script type="text/javascript" src="{{ url_for('static', filename = 'js/util.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename = 'js/pages.js') }}"></script>
 
 	<div id="page_controls">
 		<div>
