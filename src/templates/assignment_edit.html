@@ -55,8 +55,10 @@ Awesome Test Website - Create Assignment
 </div>
 
 <script>
-	assignment_display.data.set("id", {{ assignment_id }})
-	assignment_display.data.set("data", {{ assignment_data }})
-	assignment_display.data.set("questions", {{ assignment_questions }})
+	assignment_display.import(
+		{{ assignment_id }},
+		{{ assignment_data }},
+		{{ assignment_questions }}
+	)
 </script>
 {% endblock %}
