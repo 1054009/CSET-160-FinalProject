@@ -29,7 +29,7 @@ Awesome Test Website - Create Assignment
 	<div id="editor">
 		<div class="flexbox">
 			<p class="flex_fill">Assignment Name</p>
-			<input id="input_assignment_title" class="flex_fill" type="text" name="assignment_name" value="{{ assignment_data['title'] | string }}" placeholder="Assignment Name">
+			<input id="input_title" class="flex_fill" type="text" name="assignment_name" value="{{ assignment_data['title'] | string }}" placeholder="Assignment Name">
 		</div>
 
 		<div class="flexbox">
@@ -44,7 +44,7 @@ Awesome Test Website - Create Assignment
 			</div>
 
 			<div class="flexbox">
-				<select id="dropdown_assignment_question_type">
+				<select id="dropdown_question_type">
 					<option value="oe">Open Ended</option>
 					<option value="mc">Multiple Choice</option>
 				</select>
