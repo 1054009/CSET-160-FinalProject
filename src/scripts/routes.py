@@ -70,6 +70,7 @@ def signup():
 	destroy_session(session) # Log them out
 
 	if request.method == "POST":
+		# No input sanitization? Rock on!
 		email_address = request.form.get("email_address")
 		password = request.form.get("password") # Not encrypted during transit oh well
 		password_verify = request.form.get("password_verify")
