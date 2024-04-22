@@ -52,6 +52,6 @@ export class Assignment
 
 	getQuestion(index)
 	{
-		return this.getQuestions()[index]
+		return this.getQuestions()[index + 1]
 	}
 }
