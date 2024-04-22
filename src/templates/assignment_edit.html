@@ -29,28 +29,28 @@ Awesome Test Website - Create Assignment
 	<div id="editor">
 		<div class="flexbox">
 			<p class="flex_fill">Assignment Name</p>
-			<input class="flex_fill" type="text" name="assignment_name" value="{{ assignment_data['title'] | string }}" placeholder="Assignment Name">
+			<input id="input_assignment_title" class="flex_fill" type="text" name="assignment_name" value="{{ assignment_data['title'] | string }}" placeholder="Assignment Name">
 		</div>
 
 		<div class="flexbox">
 			<p class="flex_fill">Due Date</p>
-			<input class="flex_fill" type="datetime-local" name="assignment_date" value="{{ assignment_data['due_date'] | string }}" placeholder="Assignment Date">
+			<input id="dropdown_due_date" class="flex_fill" type="datetime-local" name="assignment_date" value="{{ assignment_data['due_date'] | string }}" placeholder="Assignment Date">
 		</div>
 
 		<div id="question_container" class="flex_fill">
 			<div class="flexbox">
-				<button>Previous Question</button>
+				<button id="btn_previous_question">Previous Question</button>
 				<button class="float_right">Next Question</button>
 			</div>
 
 			<div class="flexbox">
-				<select id="question_type">
+				<select id="dropdown_assignment_question_type">
 					<option value="oe">Open Ended</option>
 					<option value="mc">Multiple Choice</option>
 				</select>
 
-				<button onclick="">Add Question</button>
-				<button class="float_right">Delete Question</button>
+				<button id="btn_add_question">Add Question</button>
+				<button id="btn_delete_question" class="float_right">Delete Question</button>
 			</div>
 
 			<div id="question_display" class="flex_fill">
