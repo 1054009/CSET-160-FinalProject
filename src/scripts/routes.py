@@ -129,7 +129,11 @@ def login():
 		user_id = user_exists(email_address)
 
 		if not user_id:
-			return render_template("login.html", no_navbar = True, error = "A user with this email does not exist")
+			return render_template(
+				"login.html",
+				no_navbar = True,
+				error = "A user with this email does not exist"
+			)
 
 		if validate_login(email_address, password):
 			session["user_id"] = user_id
@@ -140,7 +144,11 @@ def login():
 
 			return redirect("/home")
 		else:
-			return render_template("login.html", no_navbar = True, error = "Invalid password")
+			return render_template(
+				"login.html",
+				no_navbar = True,
+				error = "Invalid password"
+			)
 	else:
 		return render_template("login.html", no_navbar = True)
 
