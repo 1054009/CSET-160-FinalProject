@@ -102,6 +102,9 @@ def signup():
 
 			# Insert into students or teachers table
 			account_type = request.form.get("account_type")
+			if not account_type in ("students", "teachers"):
+				raise Exception("Invalid account type")
+
 			user_id = user_exists(email_address)
 
 			run_query(
