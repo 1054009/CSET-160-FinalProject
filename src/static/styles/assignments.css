@@ -33,6 +33,11 @@
 	gap: 1em;
 }
 
+#question_pagers
+{
+	justify-content: space-between;
+}
+
 #question_display
 {
 	display: flex;
