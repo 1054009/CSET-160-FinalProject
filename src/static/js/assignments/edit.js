@@ -108,12 +108,14 @@ g_Helper.hookEvent(window, "load", false, () =>
 	// Pagers
 	g_Helper.hookElementEvent(btn_previous_question, "click", true, () =>
 	{
-
+		g_CurrentQuestionNumber--
+		goToQuestion(g_CurrentQuestionNumber)
 	})
 
 	g_Helper.hookElementEvent(btn_next_question, "click", true, () =>
 	{
-
+		g_CurrentQuestionNumber++
+		goToQuestion(g_CurrentQuestionNumber)
 	})
 
 	// Question Managing
