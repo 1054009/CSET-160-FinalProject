@@ -34,6 +34,9 @@ export class AssignmentRenderer
 
 		builder.start(renderTarget)
 		{
+			if (editable)
+				builder.startElement("div")
+
 			const options = question.getOptions()
 			for (const option of options)
 			{
@@ -124,6 +127,25 @@ export class AssignmentRenderer
 
 				if (editable)
 					builder.endElement()
+			}
+
+			if (editable)
+			{
+				{
+					const add = builder.startElement("ion-icon")
+					{
+						builder.addClass("real_button")
+
+						builder.setAttribute("name", "add-circle-outline")
+
+						helper.hookElementEvent(add, "click", true, (_, self) =>
+						{
+
+						})
+					}
+					builder.endElement()
+				}
+				builder.endElement()
 			}
 		}
 		builder.end()
