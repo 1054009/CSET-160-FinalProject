@@ -88,6 +88,7 @@ g_Helper.hookEvent(window, "load", false, () =>
 	const btn_next_question = document.querySelector("#btn_next_question")
 	const btn_add_question = document.querySelector("#btn_add_question")
 	const btn_delete_question = document.querySelector("#btn_delete_question")
+	const btn_submit_assignment = document.querySelector("#btn_submit_assignment")
 
 	// Basic information
 	g_Helper.hookElementEvent(input_title, "change", true, (_, self) =>
@@ -121,6 +122,13 @@ g_Helper.hookEvent(window, "load", false, () =>
 	g_Helper.hookElementEvent(btn_add_question, "click", true, createQuestion)
 
 	g_Helper.hookElementEvent(btn_delete_question, "click", true, deleteQuestion)
+
+	// All done
+	g_Helper.hookElementEvent(btn_submit_assignment, "click", true, () =>
+	{
+		const assignment_form_data = document.querySelector("#assignment_form_data")
+		assignment_form_data.value = JSON.stringify(js_to_sql(g_Assignment))
+	})
 
 	// Yay
 	g_Helper.hookEvent(window, "resetup_current_question", true, () =>
