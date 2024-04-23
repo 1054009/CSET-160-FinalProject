@@ -17,7 +17,7 @@ var g_CurrentQuestionNumber = 0
 // Functions
 function goToQuestion(index)
 {
-	g_CurrentQuestionNumber = g_Helper.clamp(index, 0, g_Assignment.getQuestions().length)
+	g_CurrentQuestionNumber = g_Helper.clamp(index, 0, g_Assignment.getQuestions().length - 1)
 
 	g_Renderer.renderAssignment(g_Assignment, g_CurrentQuestionNumber, question_display)
 }
