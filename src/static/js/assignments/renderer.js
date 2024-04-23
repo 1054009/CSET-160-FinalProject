@@ -19,7 +19,39 @@ export class AssignmentRenderer
 
 	renderMultipleChoice(question, renderTarget)
 	{
+		const builder = this.m_Builder
 
+		builder.start(renderTarget)
+		{
+			const options = question.getOptions()
+			for (const option of options)
+			{
+				const optionText = option.getText()
+				const optionID = optionText + options.indexOf(option)
+
+				builder.startElement("input")
+				{
+					builder.setAttribute("type", "radio")
+					builder.setAttribute("name", "question_option")
+					builder.setAttribute("checked", optionText)
+
+					builder.setProperty("id", optionID)
+				}
+				builder.endElement()
+
+				builder.startElement("label")
+				{
+					builder.setAttribute("for", optionID)
+
+					builder.setProperty("innerHTML", optionText)
+				}
+				builder.endElement()
+
+				builder.startElement("br")
+				builder.endElement()
+			}
+		}
+		builder.end()
 	}
 
 	renderAssignment(assignment, questionNumber, renderTarget)
