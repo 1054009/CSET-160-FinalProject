@@ -46,6 +46,11 @@ p
 *	Classes
 */
 
+.real_button
+{
+	cursor: pointer;
+}
+
 .flexbox
 {
 	display: flex;
