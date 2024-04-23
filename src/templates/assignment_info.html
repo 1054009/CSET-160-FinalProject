@@ -17,7 +17,7 @@ View Assignment
 	<div id="info">
 		{% for i in range(assignment_data | length) %}
 			<div class="student_info">
-				Student: {{ assignment_data[i][0]}}
+				Student: {{ assignment_data[i][0].student_id }}
 				Grade: {{ assignment_data[i][1] }}
 				Graded by: {{ assignment_data[i][2] }}
 			</div>
