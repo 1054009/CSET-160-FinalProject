@@ -14,7 +14,17 @@ export class AssignmentRenderer
 
 	renderOpenEnded(question, renderTarget)
 	{
+		const builder = this.m_Builder
 
+		builder.start(renderTarget)
+		{
+			builder.startElement("textarea")
+			{
+
+			}
+			builder.endElement()
+		}
+		builder.end()
 	}
 
 	renderMultipleChoice(question, renderTarget)
