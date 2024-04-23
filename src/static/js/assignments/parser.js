@@ -7,7 +7,7 @@ export function assignment_to_js(data)
 	const questions = data.get("questions") || []
 	const questionOptions = data.get("question_options") || {}
 
-	const assignment = new Assignment()
+	const assignment = new Assignment(data)
 	assignment.m_Questions = questions.map((rawQuestion) =>
 	{
 		const question = new Question(rawQuestion)
