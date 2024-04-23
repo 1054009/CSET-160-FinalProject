@@ -29,6 +29,7 @@ export class AssignmentRenderer
 
 	renderMultipleChoice(question, renderTarget, editable)
 	{
+		const helper = this.getHelper()
 		const builder = this.m_Builder
 
 		builder.start(renderTarget)
@@ -38,6 +39,14 @@ export class AssignmentRenderer
 			{
 				const optionText = option.getText()
 				const optionID = optionText + options.indexOf(option)
+
+				if (editable)
+				{
+					builder.startElement("div")
+					{
+						builder.addClass("flexbox")
+					}
+				}
 
 				builder.startElement("input")
 				{
@@ -54,18 +63,45 @@ export class AssignmentRenderer
 				}
 				builder.endElement()
 
-				builder.startElement("label")
+				if (editable)
 				{
-					builder.addClass("question_option_label")
+					const optionInput = builder.startElement("input")
+					{
+						builder.setAttribute("type", "text")
+						builder.setAttribute("value", option.getText())
 
-					builder.setAttribute("for", optionID)
+						const thing = (_, self) =>
+						{
+							self.m_Option.m_strText = self.value
+						}
 
-					builder.setProperty("innerHTML", optionText)
+						helper.hookElementEvent(optionInput, "change", true, thing)
+						helper.hookElementEvent(optionInput, "keypress", true, thing)
+						helper.hookElementEvent(optionInput, "paste", true, thing)
+						helper.hookElementEvent(optionInput, "input", true, thing)
+
+						builder.setProperty("m_Option", option)
+					}
+					builder.endElement()
 				}
-				builder.endElement()
+				else
+				{
+					builder.startElement("label")
+					{
+						builder.addClass("question_option_label")
 
-				builder.startElement("br")
-				builder.endElement()
+						builder.setAttribute("for", optionID)
+
+						builder.setProperty("innerHTML", optionText)
+					}
+					builder.endElement()
+
+					builder.startElement("br")
+					builder.endElement()
+				}
+
+				if (editable)
+					builder.endElement()
 			}
 		}
 		builder.end()
@@ -96,6 +132,7 @@ export class AssignmentRenderer
 			{
 				const titleInput = builder.startElement("input")
 				{
+					builder.setAttribute("type", "text")
 					builder.setAttribute("value", question.getText())
 
 					const thing = (_, self) =>
