@@ -41,8 +41,11 @@ export class AssignmentRenderer
 
 				builder.startElement("input")
 				{
+					builder.addClass("question_option")
+
 					builder.setAttribute("type", "radio")
 					builder.setAttribute("name", "question_option")
+
 
 					if (option.getCorrect())
 						builder.setAttribute("checked", true)
@@ -53,6 +56,8 @@ export class AssignmentRenderer
 
 				builder.startElement("label")
 				{
+					builder.addClass("question_option_label")
+
 					builder.setAttribute("for", optionID)
 
 					builder.setProperty("innerHTML", optionText)
