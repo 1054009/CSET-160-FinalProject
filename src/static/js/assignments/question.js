@@ -16,7 +16,7 @@ export class Question
 		this.m_iType = QUESTION_TYPE.lookupValue(helper.getString(data.get("type"), QUESTION_TYPE.translateValue(QUESTION_TYPE.MIN)))
 		this.m_iPoints = helper.getNumber(data.get("points"), false, 0)
 
-		this.m_Options = {}
+		this.m_Options = []
 	}
 
 	getID()
