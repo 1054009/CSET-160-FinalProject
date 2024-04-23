@@ -42,7 +42,7 @@ def view_account_info():
 	""")
 
 	for i in range(len(assignment_attempts_ids)):
-		attempt_id = assignment_attempts_ids[i]
+		attempt_id = assignment_attempts_ids[i].id
 
 		grade = get_grade(attempt_id)
 
