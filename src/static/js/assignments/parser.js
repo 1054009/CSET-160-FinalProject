@@ -36,7 +36,7 @@ export function js_to_sql(assignment)
 	// Questions
 	assignmentData.questions = []
 
-	for (const question in assignment.getQuestions())
+	for (const question of assignment.getQuestions())
 	{
 		const questionData = {}
 		questionData.text = question.getText()
@@ -46,7 +46,7 @@ export function js_to_sql(assignment)
 		// Options
 		questionData.options = []
 
-		for (const option in question.getOptions())
+		for (const option of question.getOptions())
 		{
 			const optionData = {}
 			optionData.text = option.getText()
