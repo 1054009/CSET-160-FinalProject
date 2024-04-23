@@ -14,6 +14,8 @@ export class Question
 		this.m_strText = helper.getString(data.get("text"), "INVALID QUESTION")
 		this.m_iType = QUESTION_TYPE.lookupValue(helper.getString(data.get("type"), QUESTION_TYPE.translateValue(QUESTION_TYPE.MIN)))
 		this.m_iPoints = helper.getNumber(data.get("points"), false, 0)
+
+		this.m_Options = {}
 	}
 
 	getText()
@@ -29,5 +31,10 @@ export class Question
 	getPoints()
 	{
 		return this.m_iPoints
+	}
+
+	getOptions()
+	{
+		return this.m_Options
 	}
 }
