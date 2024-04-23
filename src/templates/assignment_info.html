@@ -15,11 +15,11 @@ View Assignment
 	<p>{{ students_count }} student(s) have taken this test</p>
 
 	<div id="info">
-		{% for i in range(student_data | length) %}
+		{% for i in range(assignment_data | length) %}
 			<div class="student_info">
-				Student: {{ student_data[i][0]}}
-				Grade: {{ student_data[i][1] }}
-				Graded by: {{ student_data[i][2] }}
+				Student: {{ assignment_data[i][0]}}
+				Grade: {{ assignment_data[i][1] }}
+				Graded by: {{ assignment_data[i][2] }}
 			</div>
 		{% endfor %}
 	</div>
