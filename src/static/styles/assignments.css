@@ -47,3 +47,9 @@
 
 	border: 1px solid black;
 }
+
+#add_question_option
+{
+	margin-left: 0.25em;
+	margin-top: 0.25em;
+}

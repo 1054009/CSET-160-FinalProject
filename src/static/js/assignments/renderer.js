@@ -149,6 +149,7 @@ export class AssignmentRenderer
 						})
 
 						builder.setProperty("m_Row", row)
+						builder.setProperty("id", "add_question_option")
 					}
 					builder.endElement()
 				}
