@@ -27,7 +27,7 @@ function createQuestion()
 
 	const questionData = new Map()
 	questionData.set("text", "Enter Question Text")
-	questionData.set("type", QUESTION_TYPE.lookupValue(dropdown_question_type.value))
+	questionData.set("type", dropdown_question_type.value)
 
 	const question = new Question(questionData)
 
