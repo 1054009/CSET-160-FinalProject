@@ -44,40 +44,7 @@ def view_account_info():
 	for i in range(len(assignment_attempts_ids)):
 		attempt_id = assignment_attempts_ids[i]
 
-		grade = 0
-
-		responses_ids = get_query_rows(f"""
-			select `id` from `assignment_attempt_responses`
-			where attempt_id = {attempt_id}
-		""")
-
-		for j in range(len(responses_ids)):
-			response_id = responses_ids[j]
-
-			points = get_query_rows(f"""
-				select `points`
-				from `assignment_questions` as `aq`
-				where `aq`.`id` =
-				(
-					select `question_id`
-					from `assignment_attempt_responses` as `aar`
-					where `aar`.`id` = {response_id}
-				);
-			""")[0].points
-
-			is_correct = get_query_rows(f"""
-				select `is_correct`
-				from `assignment_question_options` as `aqo`
-				where `aqo`.`id =
-				(
-					select `option_id`
-					from `assignment_attempt_responses` as `aar`
-					where `aar`.`id` = {response_id}
-				);
-			""")[0].is_correct
-
-			if is_correct:
-				grade += points
+		grade = get_grade(attempt_id)
 
 		grades.append(grade)
 
