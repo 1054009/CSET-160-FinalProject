@@ -94,7 +94,24 @@ export class AssignmentRenderer
 		{
 			if (editable)
 			{
+				const titleInput = builder.startElement("input")
+				{
+					builder.setAttribute("value", question.getText())
 
+					const thing = (_, self) =>
+					{
+						self.m_Question.m_strText = self.value
+					}
+
+					helper.hookElementEvent(titleInput, "change", true, thing)
+					helper.hookElementEvent(titleInput, "keypress", true, thing)
+					helper.hookElementEvent(titleInput, "paste", true, thing)
+					helper.hookElementEvent(titleInput, "input", true, thing)
+
+					builder.setProperty("style.display", "block")
+					builder.setProperty("m_Question", question)
+				}
+				builder.endElement()
 			}
 			else
 			{
