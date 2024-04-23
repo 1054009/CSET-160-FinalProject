@@ -8,12 +8,14 @@ Awesome Test Website - Home
 
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename = '/styles/tasks.css') }}">
+
+<script src="{{ url_for('static', filename = '/js/nav.js') }}"></script>
 {% endblock %}
 
 {% block body %}
 <div id="tasks_body">
 	{% if account_type == "teacher" %}
-		<div class="task_button">
+		<div class="task_button" onclick="set_top('assignments/add')">
 			Create Task
 		</div>
 
