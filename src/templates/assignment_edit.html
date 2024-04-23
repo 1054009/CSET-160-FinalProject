@@ -59,9 +59,10 @@ Awesome Test Website - Create Assignment
 			</div>
 		</div>
 
-		<div>
+		<form action="/assignments/edit" method="POST">
+			<input id="assignment_form_data" type="hidden" name="assignment_data">
 			<input id="btn_submit_assignment" class="wider float_right" type="submit" value="Submit">
-		</div>
+		</form>
 	</div>
 </div>
 {% endblock %}
