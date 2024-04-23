@@ -87,8 +87,10 @@ export class AssignmentRenderer
 			return
 		}
 
+		const builder = this.m_Builder
+
 		// Main question
-		this.m_Builder.start(renderTarget)
+		builder.start(renderTarget)
 		{
 			if (editable)
 			{
@@ -96,14 +98,14 @@ export class AssignmentRenderer
 			}
 			else
 			{
-				this.m_Builder.startElement("h3")
+				builder.startElement("h3")
 				{
-					this.m_Builder.setProperty("innerHTML", question.getText())
+					builder.setProperty("innerHTML", question.getText())
 				}
-				this.m_Builder.endElement()
+				builder.endElement()
 			}
 		}
-		this.m_Builder.end()
+		builder.end()
 
 		// The rest
 		switch (question.getType())
