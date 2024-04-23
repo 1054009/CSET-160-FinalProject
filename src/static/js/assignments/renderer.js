@@ -76,6 +76,11 @@ export class AssignmentRenderer
 		renderTarget.innerHTML = ""
 
 		const question = assignment.getQuestion(questionNumber)
+		if (!question)
+		{
+			console.error("Invalid question (?)")
+			return
+		}
 
 		// Main question
 		this.m_Builder.start(renderTarget)
