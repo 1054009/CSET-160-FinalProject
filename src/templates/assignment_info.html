@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+View Assignment
+{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+<div id="assignment_view_body">
+	<h3>{{ assignment["title"] }}</h3>
+	<p>Created by {{ teacher }}</p>
+	<p>{{ students_count }} student(s) have taken this test</p>
+
+	<div id="info">
+		{% for i in range(student_data | length) %}
+			<div class="student_info">
+				Student: {{ student_data[i][0]}}
+				Grade: {{ student_data[i][1] }}
+				Graded by: {{ student_data[i][2] }}
+			</div>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}
