@@ -70,6 +70,7 @@ def view_assignment_info():
 
 	grades = []
 
+	# TODO any teacher can grade, not just the teacher who created assignment?
 	# teachers = []
 
 	# Calculate grade for each student
