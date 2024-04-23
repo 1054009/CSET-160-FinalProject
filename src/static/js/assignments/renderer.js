@@ -2,6 +2,7 @@ import { Helper } from "../JSModules/helper.js"
 import { DOMBuilder } from "../JSModules/dom_builder.js"
 
 import { QUESTION_TYPE } from "./question.js"
+import { QuestionOption } from "./question_option.js"
 
 export class AssignmentRenderer
 {
@@ -142,8 +143,12 @@ export class AssignmentRenderer
 
 						helper.hookElementEvent(add, "click", true, (_, self) =>
 						{
+							question.getOptions().push(new QuestionOption(new Map()))
 
+							window.dispatchEvent(new Event("resetup_current_question"))
 						})
+
+						builder.setProperty("m_Row", row)
 					}
 					builder.endElement()
 				}

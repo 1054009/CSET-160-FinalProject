@@ -119,4 +119,10 @@ g_Helper.hookEvent(window, "load", false, () =>
 	g_Helper.hookElementEvent(btn_add_question, "click", true, createQuestion)
 
 	g_Helper.hookElementEvent(btn_delete_question, "click", true, deleteQuestion)
+
+	// Yay
+	g_Helper.hookEvent(window, "resetup_current_question", true, () =>
+	{
+		goToQuestion(g_CurrentQuestionNumber)
+	})
 })
