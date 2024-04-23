@@ -57,6 +57,8 @@ def update_assignment():
 		destroy_session(session)
 		return redirect("/login")
 
+	print(request.form)
+
 	# TODO
 	return redirect("/home")
 
