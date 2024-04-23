@@ -53,3 +53,30 @@
 	margin-left: 0.25em;
 	margin-top: 0.25em;
 }
+
+#assignments_body
+{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	gap: 1em;
+}
+
+.assignment_button
+{
+	width: 50%;
+	padding: 1em;
+
+	background-color: var(--palette3);
+
+	color: white;
+}
+
+.assignment_button:hover
+{
+	cursor: pointer;
+
+	background-color: var(--palette4);
+}
