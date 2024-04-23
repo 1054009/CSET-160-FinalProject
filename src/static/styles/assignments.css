@@ -42,8 +42,3 @@
 
 	border: 1px solid black;
 }
-
-#question_display *
-{
-	flex: 1;
-}
