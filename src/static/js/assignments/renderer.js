@@ -40,11 +40,16 @@ export class AssignmentRenderer
 				const optionText = option.getText()
 				const optionID = optionText + options.indexOf(option)
 
+				var row = null
+
 				if (editable)
 				{
-					builder.startElement("div")
+					row = builder.startElement("div")
 					{
 						builder.addClass("flexbox")
+
+						builder.setProperty("m_Question", question)
+						builder.setProperty("m_Option", option)
 					}
 				}
 
@@ -81,6 +86,23 @@ export class AssignmentRenderer
 						helper.hookElementEvent(optionInput, "input", true, thing)
 
 						builder.setProperty("m_Option", option)
+					}
+					builder.endElement()
+
+					const trash = builder.startElement("ion-icon")
+					{
+						builder.setAttribute("name", "trash-outline")
+
+						helper.hookElementEvent(trash, "click", true, (_, self) =>
+						{
+							const question = self.m_Row.m_Question
+
+							helper.popFrom(question.getOptions(), self.m_Row.m_Option)
+
+							self.m_Row.remove()
+						})
+
+						builder.setProperty("m_Row", row)
 					}
 					builder.endElement()
 				}
