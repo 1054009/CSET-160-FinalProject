@@ -22,6 +22,20 @@ function goToQuestion(index)
 	g_Renderer.renderAssignment(g_Assignment, g_CurrentQuestionNumber, question_display)
 }
 
+function createQuestionData(isCorrect)
+{
+	const data = new Map()
+
+	data.set("is_correct", isCorrect)
+
+	return data
+}
+
+function createDummyQuestion(isCorrect)
+{
+	return new QuestionOption(createQuestionData(isCorrect))
+}
+
 function createQuestion()
 {
 	const dropdown_question_type = document.querySelector("#dropdown_question_type")
@@ -33,13 +47,10 @@ function createQuestion()
 	const question = new Question(questionData)
 
 	// Make some dummy questions
-	const correct = new Map()
-	correct.set("is_correct", true)
-
-	question.getOptions().push(new QuestionOption(correct))
-	question.getOptions().push(new QuestionOption())
-	question.getOptions().push(new QuestionOption())
-	question.getOptions().push(new QuestionOption())
+	question.getOptions().push(createDummyQuestion())
+	question.getOptions().push(createDummyQuestion())
+	question.getOptions().push(createDummyQuestion())
+	question.getOptions().push(createDummyQuestion())
 
 	// Insert it
 	g_Assignment.getQuestions().splice(g_CurrentQuestionNumber + 1, 0, question)
