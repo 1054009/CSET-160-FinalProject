@@ -33,7 +33,9 @@ export class AssignmentRenderer
 				{
 					builder.setAttribute("type", "radio")
 					builder.setAttribute("name", "question_option")
-					builder.setAttribute("checked", optionText)
+
+					if (option.getCorrect())
+						builder.setAttribute("checked", true)
 
 					builder.setProperty("id", optionID)
 				}
