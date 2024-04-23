@@ -73,3 +73,10 @@ def get_grade(attempt_id):
 			grade += points
 
 	return grade
+
+def get_assignment_students(assignment_id):
+	return get_query_rows(f"""
+		select `student_id`
+		from `assignment_attempts`
+		where `assignment_id` = {assignment_id}
+	""")
