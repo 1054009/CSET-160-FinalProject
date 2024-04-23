@@ -66,10 +66,7 @@ function createQuestion()
 
 function deleteQuestion()
 {
-	const currentQuestion = g_Assignment.getQuestion(g_CurrentQuestionNumber)
-	if (!currentQuestion) return
-
-	g_Assignment.getQuestions().splice(g_CurrentQuestionNumber, 1)
+	g_Helper.popFrom(g_Assignment.getQuestion(), g_Assignment.getQuestion(g_CurrentQuestionNumber))
 
 	goToQuestion(g_CurrentQuestionNumber)
 }
