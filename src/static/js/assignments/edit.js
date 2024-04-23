@@ -1,7 +1,7 @@
 // Imports
 import { Helper } from "../JSModules/helper.js"
 
-import { sql_to_js } from "./parser.js"
+import { sql_to_js, js_to_sql } from "./parser.js"
 import { QUESTION_TYPE, Question } from "./question.js"
 import { QuestionOption } from "./question_option.js"
 import { AssignmentRenderer } from "./renderer.js"
