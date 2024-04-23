@@ -35,7 +35,15 @@
 
 #question_display
 {
+	display: flex;
+	flex-direction: column;
+
 	padding: 1em;
 
 	border: 1px solid black;
+}
+
+#question_display *
+{
+	flex: 1;
 }
