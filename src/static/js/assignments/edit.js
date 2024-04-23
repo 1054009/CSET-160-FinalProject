@@ -2,7 +2,7 @@
 import { Helper } from "../JSModules/helper.js"
 
 import { assignment_to_js } from "./parser.js"
-import { Question } from "./question.js"
+import { QUESTION_TYPE, Question } from "./question.js"
 import { AssignmentRenderer } from "./renderer.js"
 
 // Globals
@@ -27,7 +27,7 @@ function createQuestion()
 
 	const questionData = new Map()
 	questionData.set("text", "Enter Question Text")
-	questionData.set("type", dropdown_question_type.value)
+	questionData.set("type", QUESTION_TYPE.lookupValue(dropdown_question_type.value))
 
 	const question = new Question(questionData)
 
