@@ -59,3 +59,32 @@ def update_assignment():
 
 	# TODO
 	return redirect("/home")
+
+@app.route("/assignments/view/<id>", methods = [ "GET" ])
+def view_assignment_info():
+	assignment_id = request.args.get("id")
+
+	assignment_data = []
+
+	students = get_assignment_students(assignment_id)
+
+	grades = []
+
+	# teachers = []
+
+	# Calculate grade for each student
+	for i in range(len(students)):
+		attempt_id = get_attempt_id(students[i].student_id, assignment_id)
+
+		grade = get_grade(attempt_id)
+
+		grades.append(grade)
+
+	assignment_data.append(students)
+	assignment_data.append(grades)
+
+	return render_template(
+		"assignment_info.html",
+		students_count = len(students),
+		assignment_data = 0
+	)
