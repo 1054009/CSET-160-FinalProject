@@ -80,3 +80,12 @@ def get_assignment_students(assignment_id):
 		from `assignment_attempts`
 		where `assignment_id` = {assignment_id}
 	""")
+
+def get_attempt_id(student_id, assignment_id):
+	return get_query_rows(f"""
+		select `id`
+		from `assignment_attempts`
+		where
+			`student_id` = {student_id}
+			and `assignment_id` = {assignment_id}
+	""")
