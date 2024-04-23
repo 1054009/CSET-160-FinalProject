@@ -11,11 +11,17 @@ export class Question
 
 		this.m_RawData = data
 
+		this.m_iID = helper.getNumber(data.get("id"), false, -1)
 		this.m_strText = helper.getString(data.get("text"), "INVALID QUESTION")
 		this.m_iType = QUESTION_TYPE.lookupValue(helper.getString(data.get("type"), QUESTION_TYPE.translateValue(QUESTION_TYPE.MIN)))
 		this.m_iPoints = helper.getNumber(data.get("points"), false, 0)
 
 		this.m_Options = {}
+	}
+
+	getID()
+	{
+		return this.m_iID
 	}
 
 	getText()
