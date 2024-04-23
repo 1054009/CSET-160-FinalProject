@@ -47,10 +47,15 @@ function createQuestion()
 	const question = new Question(questionData)
 
 	// Make some dummy questions
-	question.getOptions().push(createDummyQuestion())
-	question.getOptions().push(createDummyQuestion())
-	question.getOptions().push(createDummyQuestion())
-	question.getOptions().push(createDummyQuestion())
+	if (QUESTION_TYPE.lookupValue(dropdown_question_type.value) == QUESTION_TYPE.MULTIPLE_CHOICE)
+	{
+		question.getOptions().push(createDummyQuestion(true))
+		question.getOptions().push(createDummyQuestion())
+		question.getOptions().push(createDummyQuestion())
+		question.getOptions().push(createDummyQuestion())
+	}
+	else
+		question.getOptions().push(createDummyQuestion(true))
 
 	// Insert it
 	g_Assignment.getQuestions().splice(g_CurrentQuestionNumber + 1, 0, question)
