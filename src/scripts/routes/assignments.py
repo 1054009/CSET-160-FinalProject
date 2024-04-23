@@ -86,5 +86,5 @@ def view_assignment_info():
 	return render_template(
 		"assignment_info.html",
 		students_count = len(students),
-		assignment_data = 0
+		assignment_data = assignment_data
 	)
