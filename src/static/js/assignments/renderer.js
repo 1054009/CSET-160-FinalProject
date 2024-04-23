@@ -10,7 +10,7 @@ export class AssignmentRenderer
 		Helper.assignToObject(this)
 	}
 
-	renderAssignment(assignment, renderTarget)
+	renderAssignment(assignment, question, renderTarget)
 	{
 
 	}
