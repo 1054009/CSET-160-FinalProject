@@ -7,27 +7,29 @@ Awesome Test Website - Home
 {% endblock %}
 
 {% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename = '/styles/tasks.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename = '/styles/assignments.css') }}">
+
+<script src="{{ url_for('static', filename = '/js/nav.js') }}"></script>
 {% endblock %}
 
 {% block body %}
-<div id="tasks_body">
+<div id="assignments_body">
 	{% if account_type == "teacher" %}
-		<div class="task_button">
-			Create Task
+		<div class="assignment_button" onclick="set_top('assignments/add')">
+			Create Assignment
 		</div>
 
-		<div class="task_button">
-			View Tasks
+		<div class="assignment_button">
+			View Assignments
 		</div>
 
 	{% elif account_type == "student" %}
-		<div class="task_button">
-			All Tasks
+		<div class="assignment_button">
+			All Assignments
 		</div>
 
-		<div class="task_button">
-			Tasks Taken
+		<div class="assignment_button">
+			Assignments Taken
 		</div>
 
 	{% endif %}
