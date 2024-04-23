@@ -94,6 +94,8 @@ export class AssignmentRenderer
 
 					const trash = builder.startElement("ion-icon")
 					{
+						builder.addClass("real_button")
+
 						builder.setAttribute("name", "trash-outline")
 
 						helper.hookElementEvent(trash, "click", true, (_, self) =>
