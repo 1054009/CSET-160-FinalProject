@@ -14,12 +14,56 @@ export class AssignmentRenderer
 
 	renderOpenEnded(question, renderTarget)
 	{
+		const builder = this.m_Builder
 
+		builder.start(renderTarget)
+		{
+			builder.startElement("textarea")
+			{
+
+			}
+			builder.endElement()
+		}
+		builder.end()
 	}
 
 	renderMultipleChoice(question, renderTarget)
 	{
+		const builder = this.m_Builder
 
+		builder.start(renderTarget)
+		{
+			const options = question.getOptions()
+			for (const option of options)
+			{
+				const optionText = option.getText()
+				const optionID = optionText + options.indexOf(option)
+
+				builder.startElement("input")
+				{
+					builder.setAttribute("type", "radio")
+					builder.setAttribute("name", "question_option")
+
+					if (option.getCorrect())
+						builder.setAttribute("checked", true)
+
+					builder.setProperty("id", optionID)
+				}
+				builder.endElement()
+
+				builder.startElement("label")
+				{
+					builder.setAttribute("for", optionID)
+
+					builder.setProperty("innerHTML", optionText)
+				}
+				builder.endElement()
+
+				builder.startElement("br")
+				builder.endElement()
+			}
+		}
+		builder.end()
 	}
 
 	renderAssignment(assignment, questionNumber, renderTarget)
@@ -32,6 +76,11 @@ export class AssignmentRenderer
 		renderTarget.innerHTML = ""
 
 		const question = assignment.getQuestion(questionNumber)
+		if (!question)
+		{
+			console.error("Invalid question (?)")
+			return
+		}
 
 		// Main question
 		this.m_Builder.start(renderTarget)

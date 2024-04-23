@@ -3,6 +3,7 @@ import { Helper } from "../JSModules/helper.js"
 
 import { assignment_to_js } from "./parser.js"
 import { QUESTION_TYPE, Question } from "./question.js"
+import { QuestionOption } from "./question_option.js"
 import { AssignmentRenderer } from "./renderer.js"
 
 // Globals
@@ -16,9 +17,23 @@ var g_CurrentQuestionNumber = 0
 // Functions
 function goToQuestion(index)
 {
-	g_CurrentQuestionNumber = g_Helper.clamp(index, 0, g_Assignment.getQuestions().length)
+	g_CurrentQuestionNumber = g_Helper.clamp(index, 0, g_Assignment.getQuestions().length - 1)
 
 	g_Renderer.renderAssignment(g_Assignment, g_CurrentQuestionNumber, question_display)
+}
+
+function createQuestionData(isCorrect)
+{
+	const data = new Map()
+
+	data.set("is_correct", isCorrect)
+
+	return data
+}
+
+function createDummyQuestion(isCorrect)
+{
+	return new QuestionOption(createQuestionData(isCorrect))
 }
 
 function createQuestion()
@@ -27,10 +42,22 @@ function createQuestion()
 
 	const questionData = new Map()
 	questionData.set("text", "Enter Question Text")
-	questionData.set("type", QUESTION_TYPE.lookupValue(dropdown_question_type.value))
+	questionData.set("type", dropdown_question_type.value)
 
 	const question = new Question(questionData)
 
+	// Make some dummy questions
+	if (QUESTION_TYPE.lookupValue(dropdown_question_type.value) == QUESTION_TYPE.MULTIPLE_CHOICE)
+	{
+		question.getOptions().push(createDummyQuestion(true))
+		question.getOptions().push(createDummyQuestion())
+		question.getOptions().push(createDummyQuestion())
+		question.getOptions().push(createDummyQuestion())
+	}
+	else
+		question.getOptions().push(createDummyQuestion(true))
+
+	// Insert it
 	g_Assignment.getQuestions().splice(g_CurrentQuestionNumber + 1, 0, question)
 	g_CurrentQuestionNumber = g_Assignment.getQuestions().indexOf(question)
 
