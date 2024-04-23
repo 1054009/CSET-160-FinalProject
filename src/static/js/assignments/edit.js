@@ -3,6 +3,7 @@ import { Helper } from "../JSModules/helper.js"
 
 import { assignment_to_js } from "./parser.js"
 import { QUESTION_TYPE, Question } from "./question.js"
+import { QuestionOption } from "./question_option.js"
 import { AssignmentRenderer } from "./renderer.js"
 
 // Globals
@@ -31,6 +32,16 @@ function createQuestion()
 
 	const question = new Question(questionData)
 
+	// Make some dummy questions
+	const correct = new Map()
+	correct.set("is_correct", true)
+
+	question.getOptions().push(new QuestionOption(correct))
+	question.getOptions().push(new QuestionOption())
+	question.getOptions().push(new QuestionOption())
+	question.getOptions().push(new QuestionOption())
+
+	// Insert it
 	g_Assignment.getQuestions().splice(g_CurrentQuestionNumber + 1, 0, question)
 	g_CurrentQuestionNumber = g_Assignment.getQuestions().indexOf(question)
 
