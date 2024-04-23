@@ -22,13 +22,15 @@ def view_accounts():
 def view_account_info():
 	assignment_data = []
 
+	student_id = request.args.get("id")
+
 	titles = get_query_rows(f"""
 		select `title` from `assignments`
 		where id in
 			(
 				select `assignment_id`
 				from `assignment_attempts`
-				where `student_id` = {session.get("student_id")}
+				where `student_id` = {student_id}
 			);
 		""")
 
@@ -36,7 +38,7 @@ def view_account_info():
 
 	assignment_attempts_ids = get_query_rows(f"""
 		select 	`id` from `assignment_attempts`
-		where `student_id` = {session.get("student_id")}
+		where `student_id` = {student_id}
 	""")
 
 	for i in range(len(assignment_attempts_ids)):
