@@ -2,7 +2,7 @@ import { Assignment } from "./assignment.js"
 import { Question } from "./question.js"
 import { QuestionOption } from "./question_option.js"
 
-export function assignment_to_js(data)
+export function sql_to_js(data)
 {
 	const questions = data.get("questions") || []
 	const questionOptions = data.get("question_options") || {}

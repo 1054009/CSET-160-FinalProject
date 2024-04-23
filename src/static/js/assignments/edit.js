@@ -1,7 +1,7 @@
 // Imports
 import { Helper } from "../JSModules/helper.js"
 
-import { assignment_to_js } from "./parser.js"
+import { sql_to_js } from "./parser.js"
 import { QUESTION_TYPE, Question } from "./question.js"
 import { QuestionOption } from "./question_option.js"
 import { AssignmentRenderer } from "./renderer.js"
@@ -78,7 +78,7 @@ g_Helper.hookEvent(window, "load", false, () =>
 {
 	question_display = document.querySelector("#question_display")
 
-	g_Assignment = assignment_to_js(g_AssignmentData)
+	g_Assignment = sql_to_js(g_AssignmentData)
 	g_CurrentQuestionNumber = g_Assignment.getQuestion(g_CurrentQuestionNumber)
 
 	// Setup controls
