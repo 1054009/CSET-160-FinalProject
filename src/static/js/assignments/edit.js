@@ -19,7 +19,7 @@ function goToQuestion(index)
 {
 	g_CurrentQuestionNumber = g_Helper.clamp(index, 0, g_Assignment.getQuestions().length - 1)
 
-	g_Renderer.renderAssignment(g_Assignment, g_CurrentQuestionNumber, question_display)
+	g_Renderer.renderAssignment(g_Assignment, g_CurrentQuestionNumber, question_display, true)
 }
 
 function createQuestionData(isCorrect)

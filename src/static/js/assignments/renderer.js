@@ -12,7 +12,7 @@ export class AssignmentRenderer
 		this.m_Builder = new DOMBuilder()
 	}
 
-	renderOpenEnded(question, renderTarget)
+	renderOpenEnded(question, renderTarget, editable)
 	{
 		const builder = this.m_Builder
 
@@ -27,7 +27,7 @@ export class AssignmentRenderer
 		builder.end()
 	}
 
-	renderMultipleChoice(question, renderTarget)
+	renderMultipleChoice(question, renderTarget, editable)
 	{
 		const builder = this.m_Builder
 
@@ -71,7 +71,7 @@ export class AssignmentRenderer
 		builder.end()
 	}
 
-	renderAssignment(assignment, questionNumber, renderTarget)
+	renderAssignment(assignment, questionNumber, renderTarget, editable)
 	{
 		const helper = this.getHelper()
 
@@ -90,11 +90,18 @@ export class AssignmentRenderer
 		// Main question
 		this.m_Builder.start(renderTarget)
 		{
-			this.m_Builder.startElement("h3")
+			if (editable)
 			{
-				this.m_Builder.setProperty("innerHTML", question.getText())
+
 			}
-			this.m_Builder.endElement()
+			else
+			{
+				this.m_Builder.startElement("h3")
+				{
+					this.m_Builder.setProperty("innerHTML", question.getText())
+				}
+				this.m_Builder.endElement()
+			}
 		}
 		this.m_Builder.end()
 
@@ -103,11 +110,11 @@ export class AssignmentRenderer
 		{
 			default:
 			case QUESTION_TYPE.OPEN_ENDED:
-				this.renderOpenEnded(question, renderTarget)
+				this.renderOpenEnded(question, renderTarget, editable)
 				break
 
 			case QUESTION_TYPE.MULTIPLE_CHOICE:
-				this.renderMultipleChoice(question, renderTarget)
+				this.renderMultipleChoice(question, renderTarget, editable)
 				break
 		}
 	}
