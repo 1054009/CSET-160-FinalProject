@@ -131,10 +131,8 @@ def update_assignment():
 
 	return redirect("/home")
 
-@app.route("/assignments/view/<id>", methods = [ "GET" ])
-def view_assignment_info():
-	assignment_id = request.args.get("id")
-
+@app.route("/assignments/view/<assignment_id>", methods = [ "GET" ])
+def view_assignment_info(assignment_id):
 	assignment_data = []
 
 	students = get_assignment_students(assignment_id)
@@ -151,6 +149,7 @@ def view_assignment_info():
 		grade = get_grade(attempt_id)
 
 		grades.append(grade)
+
 	if len(students) > 0:
 		assignment_data.append(students)
 	if len(grades) > 0:
@@ -158,6 +157,7 @@ def view_assignment_info():
 
 	return render_template(
 		"assignment_info.html",
+		assignment_id =
 		students_count = len(students),
 		assignment_data = assignment_data
 	)
