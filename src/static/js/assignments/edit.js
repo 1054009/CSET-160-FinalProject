@@ -105,6 +105,15 @@ g_Helper.hookEvent(window, "load", false, () =>
 		g_Assignment.setDueDate(time)
 	})
 
+	g_Helper.hookElementEvent(dropdown_due_date, "input", true, (_, self) => // Lazy yeah yeah shush
+	{
+		// Convert to SQL datetime syntax
+		let time = self.value.replace('T', ' ')
+		time += ":00"
+
+		g_Assignment.setDueDate(time)
+	})
+
 	// Pagers
 	g_Helper.hookElementEvent(btn_previous_question, "click", true, () =>
 	{
