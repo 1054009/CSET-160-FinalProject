@@ -65,7 +65,7 @@ Awesome Test Website - Accounts
 
 		<div id="account" class="flex_column">
 			{% for account in accounts %}
-			<a href="{{ "/account/view/" + account["email_address"] | string }}">
+			<a href="{{ "/accounts/view/" + account["id"] | string }}">
 				<div class="account_button">{{ account["email_address"] }}</div>
 			</a>
 			{% endfor %}
