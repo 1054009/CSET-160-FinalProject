@@ -159,6 +159,7 @@ def view_assignment_info(assignment_id):
 	return render_template(
 		"assignment_info.html",
 		assignment_id = assignment_id,
+		account_type = session.get("account_type"),
 		students_count = len(students),
 		assignment_data = assignment_data
 	)
