@@ -5,6 +5,8 @@ View Assignment
 {% endblock %}
 
 {% block head %}
+<script type="text/javascript" src="{{ url_for('static', filename = 'js/util.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename = 'js/nav.js') }}"></script>
 
 {% endblock %}
 
@@ -20,6 +22,10 @@ View Assignment
 				Student: {{ assignment_data[i][0].student_id }}
 				Grade: {{ assignment_data[i][1] }}
 				<!-- Graded by: {{ assignment_data[i][2] }} -->
+
+				{% if account_type == "student" %}
+					<button onclick="set_top('assignments/take/{{ assignment_id }}')">Take Assignment</button>
+				{% endif %}
 			</div>
 		{% endfor %}
 	</div>
