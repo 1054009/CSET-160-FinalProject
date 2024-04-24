@@ -57,9 +57,58 @@ def update_assignment():
 		destroy_session(session)
 		return redirect("/login")
 
-	print(request.form)
+	teacher_id = session.get("teacher_id") # TODO: Validate this
 
-	# TODO
+	assignment_data = request.form.get("assignment_data")
+	if not assignment_data:
+		return redirect("/home") # TODO: Show error
+
+	assignment_data = json.loads(assignment_data)
+
+	# Basic information
+	assignment_id = assignment_data.get("id")
+	title = assignment_data.get("title")
+	due_date = assignment_data.get("due_date")
+
+	run_query(f"""
+		update `assignments`
+		set `title` = '{title}',
+		`due_date` = '{due_date}'
+		where `id` = {assignment_id}
+	""")
+
+	# Handle each question
+	for question in assignment_data.get("questions"):
+		run_query(f"""
+			insert into `assignment_questions` values
+			(
+				NULL,
+				{assignment_id},
+				'{question.get("text")}',
+				'{question.get("type")}',
+				{question.get("points")}
+			);
+		""")
+
+		# TODO: Validate this
+		question_id = get_query_rows("select last_insert_id() as 'id' from `assignment_questions`")[0].id
+
+		# Handle each option
+		for option in question.get("options"):
+			# TODO: Validate success of this
+			run_query(f"""
+				insert into `assignment_question_options` values
+				(
+					NULL,
+					{question_id},
+					'{option.get("text")}',
+					{1 if option.get("is_correct") else 0}
+				);
+			""")
+
+	# TODO: Success?
+	sql.commit()
+
 	return redirect("/home")
 
 @app.route("/assignments/view/<id>", methods = [ "GET" ])
