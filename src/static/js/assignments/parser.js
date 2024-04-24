@@ -30,6 +30,7 @@ export function js_to_sql(assignment)
 {
 	// Basic information
 	const assignmentData = {}
+	assignmentData.id = assignment.getID()
 	assignmentData.title = assignment.getTitle()
 	assignmentData.due_date = assignment.getDueDate()
 
