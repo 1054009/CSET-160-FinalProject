@@ -3,7 +3,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-Awesome Test Website - Assignments
+Assignments
 {% endblock %}
 
 {% block head %}
@@ -66,7 +66,7 @@ Awesome Test Website - Assignments
 		<div id="assignment" class="flex_column">
 			{% for assignment in assignments %}
 			<a href="{{ "/assignments/" + assignment["id"] | string }}">
-				<div class="account_button">{{ assignment["title"] }}</div>
+				<div class="assignment_button">{{ assignment["title"] }}</div>
 			</a>
 			{% endfor %}
 		</div>
