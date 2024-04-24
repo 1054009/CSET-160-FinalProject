@@ -131,9 +131,10 @@ def view_assignment_info():
 		grade = get_grade(attempt_id)
 
 		grades.append(grade)
-
-	assignment_data.append(students)
-	assignment_data.append(grades)
+	if len(students) > 0:
+		assignment_data.append(students)
+	if len(grades) > 0:
+		assignment_data.append(grades)
 
 	return render_template(
 		"assignment_info.html",
