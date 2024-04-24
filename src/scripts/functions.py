@@ -92,3 +92,10 @@ def get_attempt_id(student_id, assignment_id):
 			`student_id` = {student_id}
 			and `assignment_id` = {assignment_id}
 	""")
+
+def get_questions(assignment_id):
+	return get_query_rows(f"""
+		select *
+		from `assignment_questions`
+		where `assignment_id` = {assignment_id};
+	""")
