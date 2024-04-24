@@ -18,11 +18,9 @@ def view_accounts():
 		max_page = max_page
 	)
 
-@app.route("/accounts/view/<id>", methods = [ "GET" ])
-def view_account_info():
+@app.route("/accounts/view/<student_id>", methods = [ "GET" ])
+def view_account_info(student_id):
 	assignment_data = []
-
-	student_id = request.args.get("id")
 
 	titles = get_query_rows(f"""
 		select `title` from `assignments`
@@ -48,7 +46,13 @@ def view_account_info():
 
 		grades.append(grade)
 
-	assignment_data.append(titles)
-	assignment_data.append(grades)
+	if len(titles) > 0:
+		assignment_data.append(titles)
+	if len(grades) > 0:
+		assignment_data.append(grades)
 
-	render_template("account_info.html", assignment_data = assignment_data)
+	# print(titles)
+	# print(grades)
+	# print(assignment_data)
+
+	return render_template("account_info.html", assignment_data = assignment_data)
