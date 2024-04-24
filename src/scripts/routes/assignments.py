@@ -152,12 +152,13 @@ def view_assignment_info(assignment_id):
 
 	if len(students) > 0:
 		assignment_data.append(students)
+
 	if len(grades) > 0:
 		assignment_data.append(grades)
 
 	return render_template(
 		"assignment_info.html",
-		assignment_id =
+		assignment_id = assignment_id,
 		students_count = len(students),
 		assignment_data = assignment_data
 	)
