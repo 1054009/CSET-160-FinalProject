@@ -14,7 +14,7 @@ def initialize_assignment():
 		);
 	""")
 
-	assignment_id = get_query_rows("select max(`id`) as 'id' from `assignments`")
+	assignment_id = get_query_rows("select last_insert_id() as 'id' from `assignments`")
 	if len(assignment_id) < 1:
 		return redirect("/home") # TODO: Show an error
 
