@@ -99,3 +99,10 @@ def get_questions(assignment_id):
 		from `assignment_questions`
 		where `assignment_id` = {assignment_id};
 	""")
+
+def get_options(question_id):
+	return get_query_rows(f"""
+		select *
+		from `assignment_question_options`
+		where `question_id` = {question_id};
+	""")
