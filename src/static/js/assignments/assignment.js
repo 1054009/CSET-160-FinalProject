@@ -8,10 +8,16 @@ export class Assignment
 
 		this.m_RawData = data
 
+		this.m_iID = helper.getNumber(data.get("id"), false, -1)
 		this.m_strTitle = helper.getString(data.get("title"), "INVALID ASSIGNMENT")
 		this.m_strDueDate = helper.getString(data.get("due_date"), "9999-12-31 00:00:00")
 
 		this.m_Questions = []
+	}
+
+	getID()
+	{
+		return this.m_iID
 	}
 
 	setTitle(title)
