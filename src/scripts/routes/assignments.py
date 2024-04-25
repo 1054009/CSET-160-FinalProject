@@ -143,12 +143,9 @@ def view_assignment_info(assignment_id):
 
 	teacher = get_assignment_teacher(assignment_id)
 
-	print(teacher)
-
 	students = get_assignment_students(assignment_id)
 
 	grades = []
-
 
 	# Calculate grade for each student
 	for student in students:
@@ -164,7 +161,6 @@ def view_assignment_info(assignment_id):
 	if len(grades) > 0:
 		assignment_data.append(grades)
 
-
 	return render_template(
 		"assignment_info.html",
 		assignment_info = assignment_info,
@@ -175,8 +171,12 @@ def view_assignment_info(assignment_id):
 		assignment_data = assignment_data
 	)
 
-@app.route("assignments/take/<assignment_id>")
+@app.route("/assignments/take/<assignment_id>")
 def take_assignment(assignment_id):
+	if not validate_session(session):
+		destroy_session(session)
+		return redirect("/login")
+
 	# TODO: Make sure assignment actually exists
 
 	# Get basic information
