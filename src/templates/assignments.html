@@ -65,7 +65,7 @@ Assignments
 
 		<div id="assignment" class="flex_column">
 			{% for assignment in assignments %}
-			<a href="{{ "/assignments/" + assignment["id"] | string }}">
+			<a href="{{ "/assignments/view/" + assignment["id"] | string }}">
 				<div class="assignment_button">{{ assignment["title"] }}</div>
 			</a>
 			{% endfor %}
