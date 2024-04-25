@@ -77,6 +77,29 @@ def get_grade(attempt_id):
 
 	return grade
 
+def get_assignment_info(assignment_id):
+	return get_query_rows(f"""
+		select *
+		from `assignments`
+		where `id` = {assignment_id}
+	""")
+
+def get_assignment_teacher(assignment_id):
+		return get_query_rows(f"""
+		select `first_name`, `last_name`
+		from `users` as `u`
+		where `u`.`id` =
+		(
+			select `user_id`
+			from `teachers` as `t`
+			where `t`.`id` =
+			(
+				select `teacher_id`
+				from `assignments`
+			)
+		);
+	""")
+
 def get_assignment_students(assignment_id):
 	return get_query_rows(f"""
 		select `student_id`
