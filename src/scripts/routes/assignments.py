@@ -133,18 +133,26 @@ def update_assignment():
 
 @app.route("/assignments/view/<assignment_id>", methods = [ "GET" ])
 def view_assignment_info(assignment_id):
+	if not validate_session(session):
+		destroy_session(session)
+		return redirect("/login")
+
 	assignment_data = []
+
+	assignment_info = get_assignment_info(assignment_id)
+
+	teacher = get_assignment_teacher(assignment_id)
+
+	print(teacher)
 
 	students = get_assignment_students(assignment_id)
 
 	grades = []
 
-	# TODO any teacher can grade, not just the teacher who created assignment?
-	# teachers = []
 
 	# Calculate grade for each student
-	for i in range(len(students)):
-		attempt_id = get_attempt_id(students[i].student_id, assignment_id)
+	for student in students:
+		attempt_id = get_attempt_id(student.student_id, assignment_id)
 
 		grade = get_grade(attempt_id)
 
@@ -156,8 +164,11 @@ def view_assignment_info(assignment_id):
 	if len(grades) > 0:
 		assignment_data.append(grades)
 
+
 	return render_template(
 		"assignment_info.html",
+		assignment_info = assignment_info,
+		teacher = teacher,
 		assignment_id = assignment_id,
 		account_type = session.get("account_type"),
 		students_count = len(students),
