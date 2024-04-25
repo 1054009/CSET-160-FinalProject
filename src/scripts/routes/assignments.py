@@ -174,3 +174,30 @@ def view_assignment_info(assignment_id):
 		students_count = len(students),
 		assignment_data = assignment_data
 	)
+
+@app.route("assignments/take/<assignment_id>")
+def take_assignment(assignment_id):
+	# TODO: Make sure assignment actually exists
+
+	# Get basic information
+	assignment_data = get_query_rows(f"select * from `assignments` where `id` = {assignment_id}")
+	if len(assignment_data) < 1:
+		return redirect("/home") # TODO: Show error
+
+	# Get questions
+	assignment_questions = get_query_rows(f"select * from `assignment_questions` where `assignment_id` = {assignment_id}")
+
+	# Get question options
+	assignment_question_options = {}
+
+	for question in assignment_questions:
+		question_id = question.get("id")
+
+		assignment_question_options[question_id] = get_query_rows(f"select * from `assignment_question_options` where `question_id` = {question_id}")
+
+	return render_template(
+		"assignment_take.html",
+		assignment_data = assignment_data[0],
+		assignment_questions = assignment_questions,
+		assignment_question_options = assignment_question_options
+	)
