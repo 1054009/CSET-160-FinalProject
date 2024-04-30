@@ -37,13 +37,9 @@ def signup_post():
 		request.form.get("first_name", "nice name"),
 		request.form.get("last_name", "nice name"),
 		request.form.get("email", "idiot@gmail.com"),
-		sha_string(password)
+		sha_string(password),
+		request.form.get("account_type", "STUDENT").upper()
 	)
-
-	if request.form.get("account_type", "student") == "student":
-		register_student(new_user)
-	else:
-		register_teacher(new_user)
 
 	database.commit()
 

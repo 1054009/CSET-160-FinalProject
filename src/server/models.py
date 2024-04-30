@@ -1,4 +1,4 @@
-from sqlalchemy.dialects.mysql import INTEGER, VARCHAR, BLOB, TEXT, TIMESTAMP, BOOLEAN
+from sqlalchemy.dialects.mysql import INTEGER, VARCHAR, BLOB, TEXT, TIMESTAMP, BOOLEAN, ENUM
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
@@ -32,62 +32,12 @@ class User(Base):
 		BLOB
 	)
 
+	type:Mapped[str] = mapped_column(
+		ENUM("STUDENT", "TEACHER")
+	)
+
 	def __repr__(self) -> str:
 		return f"<User {self.email_address}>"
-
-class Student(Base):
-	__tablename__ = "students"
-
-	id:Mapped[int] = mapped_column(
-		INTEGER(unsigned = True),
-
-		primary_key = True
-	)
-
-	user_id:Mapped[int] = mapped_column(
-		ForeignKey("users.id"),
-
-		unique = True
-	)
-
-	user = relationship(
-		"User",
-		backref = "Student",
-		viewonly = True
-	)
-
-	def as_user(self):
-		return self.user
-
-	def __repr__(self) -> str:
-		return f"<Student {self.as_user().email_address}>"
-
-class Teacher(Base):
-	__tablename__ = "teachers"
-
-	id:Mapped[int] = mapped_column(
-		INTEGER(unsigned = True),
-
-		primary_key = True
-	)
-
-	user_id:Mapped[int] = mapped_column(
-		ForeignKey("users.id"),
-
-		unique = True
-	)
-
-	user = relationship(
-		"User",
-		backref = "Teacher",
-		viewonly = True
-	)
-
-	def as_user(self):
-		return self.user
-
-	def __repr__(self) -> str:
-		return f"<Teacher {self.as_user().email_address}>"
 
 class Assignment(Base):
 	__tablename__ = "assignments"
@@ -98,8 +48,8 @@ class Assignment(Base):
 		primary_key = True
 	)
 
-	teacher_id:Mapped[int] = mapped_column(
-		ForeignKey("teachers.id")
+	creator_id:Mapped[int] = mapped_column(
+		ForeignKey("users.id")
 	)
 
 	title:Mapped[str] = mapped_column(
@@ -174,8 +124,8 @@ class Attempt(Base):
 		primary_key = True
 	)
 
-	student_id:Mapped[int] = mapped_column(
-		ForeignKey("students.id")
+	submitter_id:Mapped[int] = mapped_column(
+		ForeignKey("users.id")
 	)
 
 	assignment_id:Mapped[str] = mapped_column(

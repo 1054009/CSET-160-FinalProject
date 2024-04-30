@@ -24,5 +24,6 @@ def login_post():
 		)
 
 	session["email_address"] = existing.email_address
+	session["account_type"] = existing.type
 
 	return redirect("/home/")
