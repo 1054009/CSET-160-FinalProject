@@ -47,6 +47,4 @@ def signup_post():
 
 	database.commit()
 
-	session["email_address"] = new_user.email_address
-
-	return redirect("/home/")
+	return redirect("/login/")
