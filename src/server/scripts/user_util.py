@@ -1,10 +1,9 @@
 from models import User
 from session import database
 
-def create_user(username, first_name, last_name, email_address, hashed_password):
+def create_user(first_name, last_name, email_address, hashed_password):
 	try:
 		new_user = User(
-			username = username,
 			first_name = first_name,
 			last_name = last_name,
 			email_address = email_address,
@@ -18,10 +17,10 @@ def create_user(username, first_name, last_name, email_address, hashed_password)
 	except:
 		return None
 
-def get_user(username):
+def get_user(email_address):
 	try:
 		users = database.query(User)
 
-		return users.filter(User.username == username).first()
+		return users.filter(User.email_address == email_address).first()
 	except:
 		return None

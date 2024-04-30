@@ -6,7 +6,7 @@ def clear_session(user_session):
 	return False
 
 def validate_session(user_session):
-	user = get_user(user_session.get("username"))
+	user = get_user(user_session.get("email_address"))
 
 	if not user:
 		return clear_session(user_session)
