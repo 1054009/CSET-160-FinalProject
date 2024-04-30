@@ -3,13 +3,13 @@ from session import database
 from app import app
 from flask import render_template, request, redirect, session
 
-from scripts.session_util import validate_session
+from scripts.session_util import clear_session
 from scripts.password_util import sha_string
 from scripts.user_util import create_user, get_user
 
 @app.route("/signup/")
 def signup_get():
-	validate_session(session)
+	clear_session(session)
 
 	return render_template("signup.html")
 
