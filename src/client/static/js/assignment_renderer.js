@@ -74,6 +74,12 @@ export class AssignmentRenderer
 							builder.setProperty("value", option.getText())
 						}
 						builder.endElement()
+
+						builder.startElement("button") // TODO: Make the inputs do something
+						{
+							builder.setProperty("innerHTML", "Delete Option")
+						}
+						builder.endElement()
 					}
 					else
 					{
@@ -86,6 +92,12 @@ export class AssignmentRenderer
 				}
 				builder.endElement()
 			}
+
+			builder.startElement("button")
+			{
+				builder.setProperty("innerHTML", "Add Option") // TODO: Make the inputs do something
+			}
+			builder.endElement()
 		}
 		builder.endElement()
 	}
