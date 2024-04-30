@@ -1,5 +1,3 @@
-from session import database
-
 from app import app
 from flask import render_template, request, redirect, session
 
