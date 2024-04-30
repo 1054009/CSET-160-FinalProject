@@ -6,6 +6,8 @@ import { AssignmentRenderer } from "./assignment_renderer.js"
 const g_Helper = new Helper()
 const g_Renderer = new AssignmentRenderer()
 
+var g_Assignment = null
+
 function render()
 {
 	g_Renderer.render(document.querySelector("#assignment_render_target"), true)
@@ -26,11 +28,28 @@ g_Helper.hookEvent(window, "load", false, () =>
 		render()
 	})
 
-	const assignment = new Assignment(ASSIGNMENT_ID)
-
-	assignment.fetchQuestions(() =>
+	g_Helper.hookElementEvent(document.querySelector("#btn_new_question"), "click", true, () =>
 	{
-		g_Renderer.setAssignment(assignment)
+		const type = document.querySelector("#question_type")
+		if (!type) return
+
+		g_Assignment.getQuestions().push(new AssignmentQuestion(
+			{
+				"text": "New Question",
+				"points": 1,
+				"type": type.value
+			}
+		))
+
+		g_Renderer.setQuestionNumber(g_Assignment.getQuestions().length)
+		render()
+	})
+
+	g_Assignment = new Assignment(ASSIGNMENT_ID)
+
+	g_Assignment.fetchQuestions(() =>
+	{
+		g_Renderer.setAssignment(g_Assignment)
 		render()
 	})
 })
