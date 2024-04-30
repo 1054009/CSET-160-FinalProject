@@ -8,11 +8,11 @@ const g_Renderer = new AssignmentRenderer()
 
 g_Helper.hookEvent(window, "load", false, () =>
 {
-	const test = new Assignment(ASSIGNMENT_ID)
+	const assignment = new Assignment(ASSIGNMENT_ID)
 
-	test.fetchQuestions(() =>
+	assignment.fetchQuestions(() =>
 	{
-		g_Renderer.setAssignment(test)
+		g_Renderer.setAssignment(assignment)
 		g_Renderer.render(document.querySelector("#assignment_render_target"), true)
 	})
 })
