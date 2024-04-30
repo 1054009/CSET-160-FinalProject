@@ -5,6 +5,10 @@
 {% endblock %}
 
 {% block body %}
+{% if error_msg %}
+<p>Error: {{ error_msg }}</p>
+{% endif %}
+
 <form class="flexbox flex_column flex_gap" style="width: 25%;" action="/signup/" method="POST">
 	<div class="flexbox flex_gap flex_fill">
 		<input name="first_name" class="flex_fill" type="text" placeholder="First Name">
