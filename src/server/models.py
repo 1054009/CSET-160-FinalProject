@@ -86,6 +86,10 @@ class Question(Base):
 		INTEGER(unsigned = True)
 	)
 
+	type:Mapped[str] = mapped_column(
+		ENUM("MULTIPLE_CHOICE", "OPEN_ENDED")
+	)
+
 	# TODO: Options
 
 	def __repr__(self) -> str:
