@@ -11,6 +11,25 @@ from scripts.user_util import create_user, get_user
 def login_get():
 	clear_session(session)
 
+	# TODO: Remove test accounts
+	if get_user("s@s.s") is None:
+		create_user(
+			"Student",
+			"Account",
+			"s@s.s",
+			sha_string("s"),
+			"STUDENT"
+		)
+
+	if get_user("t@t.t") is None:
+		create_user(
+			"Teacher",
+			"Account",
+			"t@t.t",
+			sha_string("t"),
+			"TEACHER"
+		)
+
 	return render_template("login.html")
 
 @app.route("/login/", methods = [ "POST" ])
