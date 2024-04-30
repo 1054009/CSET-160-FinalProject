@@ -2,7 +2,7 @@
 
 {% block body %}
 <script>
-ACCOUNT_TYPE = {{ account_type }}
+ACCOUNT_TYPE = "{{ account_type | string }}"
 </script>
 
 {% if account_type == "TEACHER" %}
