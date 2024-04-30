@@ -112,7 +112,7 @@ export class AssignmentQuestionOption
 	{
 		const helper = Helper.assignToObject(this)
 
-		this.m_strText = helper.getText(data.text)
+		this.m_strText = helper.getString(data.text)
 		this.m_bCorrect = helper.getBoolean(data.is_correct)
 	}
 
