@@ -1,10 +1,10 @@
-from server.scripts.session_util import validate_session
 from session import database
 
 from app import app
 from flask import render_template, request, redirect, session
 
 from scripts.user_util import get_user
+from scripts.session_util import validate_session
 from scripts.assignment_util import get_current_timestamp, create_assignment, get_assignment
 
 @app.route("/assignments/add/")
