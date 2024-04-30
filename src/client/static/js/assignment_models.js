@@ -32,24 +32,31 @@ export class Assignment
 
 		helper.fetchJSON(`${window.location.origin}/assignments/get_questions/${this.getID()}`, (data) =>
 		{
-			if (!data)
+			try
 			{
-				alert("Failed to get assignment data!")
-				return
+				if (!data && this.m_Questions.length < 1)
+				{
+					alert("Failed to get assignment data!")
+					return
+				}
+
+				this.m_strTitle = helper.getString(data.title)
+				this.m_strDueDate = helper.getString(data.due_date)
+
+				// Setup questions
+				if (helper.isArray(data.questions))
+				{
+					for (const questionData of data.questions)
+						this.m_Questions.push(new AssignmentQuestion(questionData))
+				}
+
+				if (helper.isFunction(callback))
+					callback()
 			}
-
-			this.m_strTitle = helper.getString(data.title)
-			this.m_strDueDate = helper.getString(data.due_date)
-
-			// Setup questions
-			if (helper.isArray(data.questions))
+			catch (problematic_error_stupid)
 			{
-				for (const questionData in data.questions)
-					this.m_Questions.push(new AssignmentQuestion(questionData))
+				console.log(problematic_error_stupid)
 			}
-
-			if (helper.isFunction(callback))
-				callback()
 		})
 	}
 
