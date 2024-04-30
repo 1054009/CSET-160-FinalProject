@@ -24,3 +24,12 @@ def get_query_rows(query, parameters = None):
 	if not query_result: return []
 
 	return raw_get_query_rows(query_result.all())
+
+def mapping_to_list(rows):
+	# result = [dict(row) for row in rows]
+	print(f"rows")
+	for row in rows:
+		print(row)
+		row = dict(row)
+
+	return result

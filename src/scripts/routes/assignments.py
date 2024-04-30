@@ -64,6 +64,16 @@ def add_assignment(assignment_id = 1):
 
 		assignment_question_options[question_id] = get_query_rows(f"select * from `assignment_question_options` where `question_id` = {question_id}")
 
+	print(assignment_question_options)
+	print(type(assignment_question_options))
+
+	assignment_question_options = mapping_to_list(assignment_question_options)
+	print("adsf")
+	print(assignment_question_options)
+	assignment_question_options = json.dumps(assignment_question_options)
+	print("b")
+	print(assignment_question_options)
+
 	return render_template(
 		"assignment_edit.html",
 		assignment_data = assignment_data[0],
