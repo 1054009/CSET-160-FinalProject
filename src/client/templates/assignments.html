@@ -10,30 +10,28 @@ ASSIGNMENT_ID = {{ assignment_id }}
 </script>
 
 {% if mode == "edit" %}
-<center>
-	<form class="flexbox flex_column flex_gap" style="width: 50%;" action="/assignments/edit/" method="POST">
-		<div class="flexbox flex_hspace">
-			<button id="btn_prev_question">Previous Question</button>
-			<button id="btn_next_question">Next Question</button>
+<form class="flexbox flex_column flex_gap" style="width: 50%;" action="/assignments/edit/" method="POST">
+	<div class="flexbox flex_hspace">
+		<button id="btn_prev_question">Previous Question</button>
+		<button id="btn_next_question">Next Question</button>
+	</div>
+
+	<div class="flexbox flex_hspace">
+		<div class="flexbox flex_gap">
+			<select id="question_type">
+				<option>Multiple Choice</option>
+				<option>Open Ended</option>
+			</select>
+
+			<button id="btn_new_question">Add New Question</button>
 		</div>
 
-		<div class="flexbox flex_hspace">
-			<div class="flexbox flex_gap">
-				<select id="question_type">
-					<option>Multiple Choice</option>
-					<option>Open Ended</option>
-				</select>
+		<button id="btn_del_question">Delete Current Question</button>
+	</div>
 
-				<button id="btn_new_question">Add New Question</button>
-			</div>
+	<div id="assignment_render_target" class="flex_fill">
 
-			<button id="btn_del_question">Delete Current Question</button>
-		</div>
-
-		<div id="assignment_render_target" class="flex_fill">
-
-		</div>
-	</form>
-</center>
+	</div>
+</form>
 {% endif %}
 {% endblock %}
