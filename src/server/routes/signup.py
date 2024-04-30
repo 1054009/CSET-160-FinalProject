@@ -1,3 +1,5 @@
+from session import database
+
 from app import app
 from flask import render_template, request, redirect, session
 
@@ -37,6 +39,8 @@ def signup_post():
 		request.form.get("email", "idiot@gmail.com"),
 		sha_string(password)
 	)
+
+	database.commit()
 
 	session["email_address"] = new_user.email_address
 
