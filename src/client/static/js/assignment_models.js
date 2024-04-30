@@ -16,6 +16,16 @@ export class Assignment
 		return this.m_iID
 	}
 
+	getTitle()
+	{
+		return this.m_strTitle
+	}
+
+	getDueDate()
+	{
+		return this.m_strDueDate
+	}
+
 	fetchQuestions(callback)
 	{
 		const helper = this.getHelper()
@@ -27,6 +37,9 @@ export class Assignment
 				alert("Failed to get assignment data!")
 				return
 			}
+
+			this.m_strTitle = helper.getString(data.title)
+			this.m_strDueDate = helper.getString(data.due_date)
 
 			// Setup questions
 			if (helper.isArray(data.questions))
