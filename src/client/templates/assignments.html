@@ -10,7 +10,7 @@ ASSIGNMENT_ID = {{ assignment_id }}
 </script>
 
 {% if mode == "edit" %}
-<form class="flexbox flex_column flex_gap" style="width: 50%;" action="/assignments/edit/" method="POST">
+<div class="flexbox flex_column flex_gap" style="width: 50%;">
 	<div class="flexbox flex_hspace">
 		<button id="btn_prev_question">Previous Question</button>
 		<button id="btn_next_question">Next Question</button>
@@ -29,9 +29,13 @@ ASSIGNMENT_ID = {{ assignment_id }}
 		<button id="btn_del_question">Delete Current Question</button>
 	</div>
 
-	<div id="assignment_render_target" class="flex_fill">
+	<div id="assignment_render_target" class="flexbox flex_column flex_fill flex_gap">
 
 	</div>
+</div>
+
+<form class="flexbox flex_column flex_gap" style="width: 50%;" action="/assignments/edit/" method="POST">
+	<button>hey.</button>
 </form>
 {% endif %}
 {% endblock %}
