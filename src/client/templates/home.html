@@ -1,9 +1,15 @@
 {% extends "base.html" %}
 
 {% block body %}
-{% if account_type == "STUDENT" %}
-student
-{% else %}
-teacher
+<script>
+ACCOUNT_TYPE = {{ account_type }}
+</script>
+
+{% if account_type == "TEACHER" %}
+<a href="/assignments/add"><button>Create New Assignment</button></a>
 {% endif %}
+
+<div id="assignment_list" class="flexbox flex_column flex_gap">
+
+</div>
 {% endblock %}
