@@ -4,7 +4,7 @@ from session import database
 from datetime import datetime
 
 def get_current_timestamp():
-	return datetime.now().strftime("%Y%m%d%H%M%S")
+	return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 def create_assignment(creator_id, title, due_date):
 	try:
