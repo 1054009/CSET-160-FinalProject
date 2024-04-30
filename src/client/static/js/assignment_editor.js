@@ -9,5 +9,10 @@ g_Helper.hookEvent(window, "load", false, () =>
 {
 	const test = new Assignment(1)
 
-	test.fetchQuestions()
+	test.fetchQuestions(() =>
+	{
+		console.log(test)
+
+		console.log(test.getQuestions())
+	})
 })
