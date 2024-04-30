@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block body %}
+{% if account_type == "STUDENT" %}
+student
+{% else %}
+teacher
+{% endif %}
+{% endblock %}

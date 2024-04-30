@@ -9,4 +9,9 @@ def home():
 	if not validate_session(session):
 		return redirect("/login/")
 
-	return render_template("base.html")
+	return render_template(
+		"home.html",
+
+		account_email = session.get("email_address"),
+		account_type = session.get("account_type")
+	)
