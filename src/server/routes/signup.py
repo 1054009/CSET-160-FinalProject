@@ -37,4 +37,6 @@ def signup_post():
 		sha_string(password)
 	)
 
+	session["email_address"] = new_user.email_address
+
 	return redirect("/home/")
