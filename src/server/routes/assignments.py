@@ -57,11 +57,40 @@ def get_questions(assignment_id = 0):
 	if not validate_session(session):
 		return redirect("/login/")
 
+	data = {
+		"creator_id": 0,
+		"title": "Invalid Assignment",
+		"due_date": get_current_timestamp(),
+
+		"questions": []
+	}
+
 	assignment = get_assignment(assignment_id)
 	if assignment is None:
-		return {}
+		return data
 
-	return assignment.questions
+	data["creator_id"] = assignment.creator_id
+	data["title"] = assignment.title
+	data["due_date"] = assignment.due_date
+
+	for question in assignment.questions:
+		options = []
+
+		for option in question.options:
+			options.append({
+				"text": option.text,
+				"is_correct": option.is_correct
+			})
+
+		data["questions"].append({
+			"text": question.text,
+			"points": question.points,
+			"type": question.type,
+
+			"options": options
+		})
+
+	return data
 
 @app.route("/assignments/edit/<assignment_id>")
 def edit_get(assignment_id = 0):
