@@ -138,16 +138,27 @@ export class AssignmentRenderer
 			const question = assignment.getQuestions()[this.getQuestionNumber() - 1]
 			if (question)
 			{
-				builder.startElement("input")
+				if (editable)
 				{
-					builder.setAttribute("type", "text")
-					builder.setAttribute("maxlength", 65535)
-					builder.setAttribute("placeholder", "Question text")
-					builder.setAttribute("required", true)
+					builder.startElement("input")
+					{
+						builder.setAttribute("type", "text")
+						builder.setAttribute("maxlength", 65535)
+						builder.setAttribute("placeholder", "Question text")
+						builder.setAttribute("required", true)
 
-					builder.setProperty("value", question.getText())
+						builder.setProperty("value", question.getText())
+					}
+					builder.endElement()
+				}
+				else
+				{
+					builder.startElement("h3")
+				{
+					builder.setProperty("innerHTML", question.getText())
 				}
 				builder.endElement()
+				}
 
 				if (question.getType() == "MULTIPLE_CHOICE")
 					this.multipleChoice(builder, question, editable)
