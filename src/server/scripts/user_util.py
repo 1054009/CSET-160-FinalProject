@@ -1,4 +1,4 @@
-from models import User, Student, Teacher
+from models import User
 from session import database
 
 def create_user(first_name, last_name, email_address, hashed_password, type):

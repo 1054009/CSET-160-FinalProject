@@ -5,7 +5,7 @@ from flask import render_template, request, redirect, session
 
 from scripts.session_util import clear_session
 from scripts.password_util import sha_string
-from scripts.user_util import create_user, get_user, register_student, register_teacher
+from scripts.user_util import create_user, get_user
 
 @app.route("/signup/")
 def signup_get():
