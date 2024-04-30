@@ -147,7 +147,10 @@ class Attempt(Base):
 		BOOLEAN
 	)
 
-	# TODO: Responses
+	responses = relationship(
+		"AttemptResponse",
+		backref = "Attempt"
+	)
 
 	def __repr__(self) -> str:
 		return f"<Attempt '{self.id}'>"
