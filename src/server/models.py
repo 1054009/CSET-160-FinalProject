@@ -90,7 +90,10 @@ class Question(Base):
 		ENUM("MULTIPLE_CHOICE", "OPEN_ENDED")
 	)
 
-	# TODO: Options
+	options = relationship(
+		"Option",
+		backref = "Question"
+	)
 
 	def __repr__(self) -> str:
 		return f"<Question '{self.text}'>"
