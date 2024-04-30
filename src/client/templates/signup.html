@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block head %}
+<script type="module" src="{{ url_for('static', filename = 'js/signup.js') }}"></script>
+{% endblock %}
+
 {% block body %}
 <form class="flexbox flex_column flex_gap" style="width: 25%;" action="/signup/" method="POST">
 	<div class="flexbox flex_gap flex_fill">
