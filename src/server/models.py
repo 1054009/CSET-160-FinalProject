@@ -60,7 +60,10 @@ class Assignment(Base):
 		TIMESTAMP
 	)
 
-	# TODO: Questions
+	questions = relationship(
+		"Question",
+		backref = "Assignment"
+	)
 
 	def __repr__(self) -> str:
 		return f"<Assignment {self.title}>"
