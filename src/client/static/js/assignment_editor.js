@@ -4,6 +4,7 @@ import { Assignment, AssignmentQuestion } from "./assignment_models.js"
 import { AssignmentRenderer } from "./assignment_renderer.js"
 
 const g_Helper = new Helper()
+const g_Renderer = new AssignmentRenderer()
 
 g_Helper.hookEvent(window, "load", false, () =>
 {
@@ -11,8 +12,7 @@ g_Helper.hookEvent(window, "load", false, () =>
 
 	test.fetchQuestions(() =>
 	{
-		console.log(test)
-
-		console.log(test.getQuestions())
+		g_Renderer.setAssignment(test)
+		g_Renderer.render(document.querySelector("#assignment_render_target"), true)
 	})
 })
