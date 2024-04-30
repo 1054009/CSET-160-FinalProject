@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="flexbox flex_column flex_gap" style="width: 25%;">
+	<div class="flexbox flex_gap">
+		<input name="first_name" class="flex_fill" type="text" placeholder="First Name">
+		<input name="last_name" class="flex_fill" type="text" placeholder="Last Name">
+	</div>
+
+	<input name="email" type="email" placeholder="Email Address">
+	<input name="password" type="password" placeholder="Password">
+	<input name="password_verify" type="password" placeholder="Verify Password">
+
+	<select name="account_type">
+		<option value="student">Student</option>
+		<option value="teacher">Teacher</option>
+	</select>
+</div>
+{% endblock %}
