@@ -1,4 +1,4 @@
-from user_util import get_user
+from scripts.user_util import get_user
 
 def clear_session(user_session):
 	user_session.clear()
