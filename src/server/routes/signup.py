@@ -1,11 +1,13 @@
 from app import app
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, session
 
 from scripts.password_util import sha_string
 from scripts.user_util import create_user, get_user
 
 @app.route("/signup/")
 def signup_get():
+	validate_session(session)
+
 	return render_template("signup.html")
 
 @app.route("/signup/", methods = [ "POST" ])
