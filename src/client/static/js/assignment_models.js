@@ -17,7 +17,7 @@ export class Assignment
 
 	fetchQuestions()
 	{
-		this.getHelper().fetchJSON(`/assignments/get_questions/${this.getID()}`, (json) =>
+		this.getHelper().fetchJSON(`${window.location.origin}/assignments/get_questions/${this.getID()}`, (json) =>
 		{
 			console.log(json)
 		})
