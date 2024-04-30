@@ -7,7 +7,7 @@ const g_Helper = new Helper()
 
 g_Helper.hookEvent(window, "load", false, () =>
 {
-	const test = new Assignment(1)
+	const test = new Assignment(ASSIGNMENT_ID)
 
 	test.fetchQuestions(() =>
 	{

@@ -5,6 +5,10 @@
 {% endblock %}
 
 {% block body %}
+<script>
+ASSIGNMENT_ID = {{ assignment_id }}
+</script>
+
 {% if mode == "edit" %}
 <form action="/assignments/edit/" method="POST">
 
