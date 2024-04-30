@@ -14,12 +14,6 @@ class User(Base):
 		primary_key = True
 	)
 
-	username:Mapped[str] = mapped_column(
-		VARCHAR(32),
-
-		unique = True
-	)
-
 	first_name:Mapped[str] = mapped_column(
 		VARCHAR(32)
 	)
