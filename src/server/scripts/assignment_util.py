@@ -20,3 +20,11 @@ def create_assignment(creator_id, title, due_date):
 		return new_assignment
 	except:
 		return None
+
+def get_assignment(id):
+	try:
+		assignments = database.query(Assignment)
+
+		return assignments.filter(Assignment.id == id).first()
+	except:
+		return None
