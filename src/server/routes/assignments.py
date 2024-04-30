@@ -5,7 +5,7 @@ from flask import render_template, request, redirect, session
 
 from scripts.user_util import get_user
 from scripts.session_util import validate_session
-from scripts.assignment_util import get_current_timestamp, create_assignment, get_assignment
+from scripts.assignment_util import get_current_timestamp, create_assignment, get_assignment, create_question, create_option
 
 @app.route("/assignments/add/")
 def add():
@@ -20,6 +20,32 @@ def add():
 		current_user.id,
 		"New Assignment",
 		get_current_timestamp()
+	)
+
+	new_question = create_question(
+		new_assignment.id,
+		"Example",
+		3,
+		"MULTIPLE_CHOICE"
+	)
+
+	create_option(
+		new_question.id,
+		"Option 1",
+		True
+	)
+
+	create_option(
+		new_question.id,
+		"Option 2",
+		False
+	)
+
+	new_question = create_question(
+		new_assignment.id,
+		"Example 2",
+		2,
+		"OPEN_ENDED"
 	)
 
 	database.commit()
