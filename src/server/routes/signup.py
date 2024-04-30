@@ -1,6 +1,7 @@
 from app import app
 from flask import render_template, request, redirect, session
 
+from scripts.session_util import validate_session
 from scripts.password_util import sha_string
 from scripts.user_util import create_user, get_user
 
