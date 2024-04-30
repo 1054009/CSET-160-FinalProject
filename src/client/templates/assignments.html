@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block head %}
+<script type="module" src="{{ url_for('static', filename = 'js/assignment_editor.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+{% if mode == "edit" %}
+<form action="/assignments/edit/" method="POST">
+
+</form>
+{% endif %}
+{% endblock %}
