@@ -66,7 +66,7 @@ class Assignment(Base):
 	)
 
 	def __repr__(self) -> str:
-		return f"<Assignment {self.title}>"
+		return f"<Assignment '{self.title}'>"
 
 class Question(Base):
 	__tablename__ = "assignment_questions"
