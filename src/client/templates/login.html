@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block body %}
+{% if error_msg %}
+<p>Error: {{ error_msg }}</p>
+{% endif %}
+
+<form class="flexbox flex_column flex_gap" style="width: 25%;" action="/login/" method="POST">
+	<input class="flex_fill" name="email" type="email" placeholder="Email Address" required>
+	<input class="flex_fill" name="password" type="password" placeholder="Password" required>
+
+	<input class="flex_fill" type="submit" value="Login">
+</form>
+{% endblock %}
