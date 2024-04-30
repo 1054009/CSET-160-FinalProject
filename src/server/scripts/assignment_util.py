@@ -37,8 +37,6 @@ def create_question(assignment_id, text, points, type):
 		database.add(new_question)
 		database.flush()
 
-		assignment.questions.append(new_question)
-
 		return new_question
 	except:
 		return None
@@ -57,8 +55,6 @@ def create_option(question_id, text, is_correct):
 
 		database.add(new_option)
 		database.flush()
-
-		question.options.append(new_option)
 
 		return new_option
 	except:
