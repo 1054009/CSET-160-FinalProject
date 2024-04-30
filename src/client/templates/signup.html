@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block body %}
-<div class="flexbox flex_column flex_gap" style="width: 25%;">
+<form class="flexbox flex_column flex_gap" style="width: 25%;" action="/signup/" method="POST">
 	<div class="flexbox flex_gap">
 		<input name="first_name" class="flex_fill" type="text" placeholder="First Name">
 		<input name="last_name" class="flex_fill" type="text" placeholder="Last Name">
@@ -17,5 +17,5 @@
 	</select>
 
 	<input type="submit" value="Sign Up">
-</div>
+</form>
 {% endblock %}
