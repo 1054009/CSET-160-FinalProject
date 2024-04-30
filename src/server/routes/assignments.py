@@ -2,7 +2,6 @@ from session import database
 
 from app import app
 from flask import render_template, request, redirect, session
-from sqlalchemy.sql.functions import now
 
 from scripts.user_util import get_user
 from scripts.assignment_util import get_current_timestamp, create_assignment
@@ -24,11 +23,15 @@ def add():
 	return redirect(f"/assignments/edit/{new_assignment.id}")
 
 @app.route("/assignments/edit/<assignment_id>")
-def edit(assignment_id = 1):
-	print(assignment_id)
-
+def edit_get(assignment_id = 1):
 	return render_template(
 		"assignments.html",
 
 		mode = "edit"
 	)
+
+@app.route("/assignments/edit/", methods = [ "POST" ])
+def edit_post():
+	print(request.form)
+
+	return render_template("home.html")
