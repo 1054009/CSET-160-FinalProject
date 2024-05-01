@@ -92,6 +92,7 @@ def to_json(id):
 		return "{}"
 
 	data = {
+		"id": assignment.id,
 		"creator_id": assignment.creator_id,
 		"title": assignment.title,
 		"due_date": assignment.due_date,
