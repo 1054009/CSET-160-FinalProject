@@ -1,15 +1,20 @@
 {% extends "base.html" %}
 
+{% block head %}
+<script type="module" src="{{ url_for('static', filename = 'js/home.js') }}"></script>
+{% endblock %}
+
 {% block body %}
 <script>
-ACCOUNT_TYPE = "{{ account_type | string }}"
+ACCOUNT_TYPE = "{{ account_type | safe | string }}"
+ASSIGNMENT_LIST = {{ assignment_list | safe | string }}
 </script>
 
 {% if account_type == "TEACHER" %}
 <a href="/assignments/add"><button>Create New Assignment</button></a>
 {% endif %}
 
-<div id="assignment_list" class="flexbox flex_column flex_gap">
-{{ blarg }}
+<div id="assignment_list" class="flexbox flex_column flex_gap" style="width: 50%;">
+
 </div>
 {% endblock %}
