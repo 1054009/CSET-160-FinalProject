@@ -3,7 +3,7 @@ from scripts.user_util import get_user
 def clear_session(user_session):
 	user_session.clear()
 
-	return False
+	return False, None
 
 def validate_session(user_session):
 	user = get_user(user_session.get("email_address"))
@@ -11,4 +11,4 @@ def validate_session(user_session):
 	if not user:
 		return clear_session(user_session)
 
-	return True
+	return True, user
