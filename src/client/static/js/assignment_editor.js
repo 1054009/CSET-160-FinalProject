@@ -17,6 +17,7 @@ function render(questionNumber)
 g_Helper.hookEvent(window, "load", false, () =>
 {
 	// Setup controls
+	// TODO: Due date and points for each question
 	g_Helper.hookElementEvent(document.querySelector("#btn_prev_question"), "click", true, () =>
 	{
 		render(g_Renderer.getQuestionNumber() - 1)
