@@ -13,8 +13,6 @@ def add():
 		return redirect("/login/")
 
 	current_user = get_user(session.get("email_address"))
-	if current_user is None or current_user.type != "TEACHER":
-		return redirect("/home/")
 
 	new_assignment = create_assignment(
 		current_user.id,
