@@ -10,7 +10,7 @@ var g_Assignment = null
 
 function render(questionNumber)
 {
-	g_Renderer.setQuestionNumber(helper.getNumber(questionNumber, false, 1))
+	g_Renderer.setQuestionNumber(g_Helper.getNumber(questionNumber, false, 1))
 	g_Renderer.render(document.querySelector("#assignment_render_target"), true)
 }
 
