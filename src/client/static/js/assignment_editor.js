@@ -56,6 +56,7 @@ g_Helper.hookEvent(window, "load", false, () =>
 		const assignmentData = {
 			"title": g_Assignment.getTitle(),
 			"due_date": g_Assignment.getDueDate(),
+			"id": g_Assignment.getID(),
 
 			"questions": []
 		}
