@@ -52,7 +52,7 @@ def add():
 
 	return redirect(f"/assignments/edit/{new_assignment.id}")
 
-@app.route("/assignments/get_questions/<assignment_id>")
+@app.route("/assignments/get_data/<assignment_id>")
 def get_questions(assignment_id = 0):
 	data = {
 		"creator_id": 0,

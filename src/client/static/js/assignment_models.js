@@ -30,7 +30,7 @@ export class Assignment
 	{
 		const helper = this.getHelper()
 
-		helper.fetchJSON(`${window.location.origin}/assignments/get_questions/${this.getID()}`, (data) =>
+		helper.fetchJSON(`${window.location.origin}/assignments/get_data/${this.getID()}`, (data) =>
 		{
 			try
 			{
