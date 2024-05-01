@@ -129,9 +129,9 @@ export class AssignmentRenderer
 				builder.endElement()
 			}
 
-			if (editable)
+			builder.startElement("button")
 			{
-				builder.startElement("button")
+				if (editable)
 				{
 					builder.setProperty("innerHTML", "Add Option")
 
@@ -147,8 +147,14 @@ export class AssignmentRenderer
 						this.refresh(true)
 					})
 				}
-				builder.endElement()
+				else
+				{
+					builder.setProperty("innerHTML", "Submit Answer")
+
+					// TODO: Input functionality
+				}
 			}
+			builder.endElement()
 		}
 		builder.endElement()
 	}
