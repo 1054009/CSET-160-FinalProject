@@ -80,6 +80,10 @@ export class AssignmentRenderer
 								option.setCorrect(true)
 							})
 						}
+						else
+						{
+							// TODO: Log answer
+						}
 					}
 					builder.endElement()
 
