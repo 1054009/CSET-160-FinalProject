@@ -36,6 +36,11 @@ export class AssignmentRenderer
 		return this.m_iQuestionNumber
 	}
 
+	getQuestionCount()
+	{
+		return this.getAssignment().getQuestions().length
+	}
+
 	multipleChoice(builder, question, editable)
 	{
 		builder.startElement("div")

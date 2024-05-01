@@ -40,7 +40,7 @@ g_Helper.hookEvent(window, "load", false, () =>
 			}
 		))
 
-		render(g_Assignment.getQuestions().length)
+		render(g_Renderer.getQuestionCount())
 	})
 
 	g_Assignment = new Assignment(ASSIGNMENT_ID)
