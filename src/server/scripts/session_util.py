@@ -12,3 +12,14 @@ def validate_session(user_session):
 		return clear_session(user_session)
 
 	return True, user
+
+def validate_session_type(user_session, type):
+	valid, user = validate_session(user_session)
+
+	if not valid:
+		return False, None
+
+	if user.type != type:
+		return False, user
+
+	return True, user
