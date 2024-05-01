@@ -8,8 +8,9 @@ const g_Renderer = new AssignmentRenderer()
 
 var g_Assignment = null
 
-function render()
+function render(questionNumber)
 {
+	g_Renderer.setQuestionNumber(helper.getNumber(questionNumber, false, 1))
 	g_Renderer.render(document.querySelector("#assignment_render_target"), true)
 }
 
@@ -18,14 +19,12 @@ g_Helper.hookEvent(window, "load", false, () =>
 	// Setup controls
 	g_Helper.hookElementEvent(document.querySelector("#btn_prev_question"), "click", true, () =>
 	{
-		g_Renderer.setQuestionNumber(g_Renderer.getQuestionNumber() - 1)
-		render()
+		render(g_Renderer.getQuestionNumber() - 1)
 	})
 
 	g_Helper.hookElementEvent(document.querySelector("#btn_next_question"), "click", true, () =>
 	{
-		g_Renderer.setQuestionNumber(g_Renderer.getQuestionNumber() + 1)
-		render()
+		render(g_Renderer.getQuestionNumber() + 1)
 	})
 
 	g_Helper.hookElementEvent(document.querySelector("#btn_new_question"), "click", true, () =>
@@ -41,8 +40,7 @@ g_Helper.hookEvent(window, "load", false, () =>
 			}
 		))
 
-		g_Renderer.setQuestionNumber(g_Assignment.getQuestions().length)
-		render()
+		render(g_Assignment.getQuestions().length)
 	})
 
 	g_Assignment = new Assignment(ASSIGNMENT_ID)
