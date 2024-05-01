@@ -4,12 +4,12 @@ from app import app
 from flask import render_template, request, redirect, session
 
 from scripts.user_util import get_user
-from scripts.session_util import validate_session
+from scripts.session_util import validate_session, validate_session_type
 from scripts.assignment_util import get_current_timestamp, create_assignment, get_assignment, create_question, create_option
 
 @app.route("/assignments/add/")
 def add():
-	if not validate_session(session):
+	if not validate_session_type(session, "TEACHER"):
 		return redirect("/login/")
 
 	current_user = get_user(session.get("email_address"))
@@ -94,7 +94,7 @@ def get_questions(assignment_id = 0):
 
 @app.route("/assignments/edit/<assignment_id>")
 def edit_get(assignment_id = 0):
-	if not validate_session(session):
+	if not validate_session_type(session, "TEACHER"):
 		return redirect("/login/")
 
 	assignment = get_assignment(assignment_id)
@@ -110,6 +110,9 @@ def edit_get(assignment_id = 0):
 
 @app.route("/assignments/edit/", methods = [ "POST" ])
 def edit_post():
+	if not validate_session_type(session, "TEACHER"):
+		return redirect("/login/")
+
 	print(request.form)
 
 	return render_template("home.html")
