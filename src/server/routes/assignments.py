@@ -1,8 +1,10 @@
 from session import database
 
+import json
 from app import app
 from flask import render_template, request, redirect, session
 
+from models import Assignment, Question, Option
 from scripts.user_util import get_user
 from scripts.session_util import validate_session_type
 from scripts.assignment_util import get_current_timestamp, create_assignment, get_assignment, create_question, create_option
@@ -108,6 +110,44 @@ def edit_post():
 	if not validate_session_type(session, "TEACHER"):
 		return redirect("/login/")
 
-	print(request.form)
+	current_user = get_user(session.get("email_address"))
 
-	return render_template("home.html")
+	assignment_data = request.form.get("assignment_data")
+	if assignment_data is None:
+		return redirect("/home/") # TODO: Error
+
+	assignment_data = json.loads(assignment_data)
+
+	# Get base assignment
+	assignment = get_assignment(assignment_data.get("id"))
+	if assignment is None:
+		assignment = create_assignment(
+			current_user.id,
+			assignment_data.get("title"),
+			assignment_data.get("due_date")
+		)
+
+	# Delete the old questions and options
+	for question in assignment.questions:
+		for option in question.options:
+			database.query(Option).filter(Option.id == option.id).delete()
+
+		database.query(Question).filter(Question.id == question.id).delete()
+
+	# Add the new stuff
+	for question in assignment_data.get("questions", []):
+		new_question = create_question(
+			assignment.id,
+			question.get("text", "invalid"),
+			question.get("points", 0),
+			question.get("type", "OPEN_ENDED")
+		)
+
+		for option in question.get("options", []):
+			create_option(
+				new_question.id,
+				option.get("text", "invalid"),
+				option.get("is_correct", False)
+			)
+
+	return redirect("/home/")
