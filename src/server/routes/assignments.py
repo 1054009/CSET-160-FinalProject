@@ -4,7 +4,7 @@ from app import app
 from flask import render_template, request, redirect, session
 
 from scripts.user_util import get_user
-from scripts.session_util import validate_session, validate_session_type
+from scripts.session_util import validate_session_type
 from scripts.assignment_util import get_current_timestamp, create_assignment, get_assignment, create_question, create_option
 
 @app.route("/assignments/add/")
@@ -54,9 +54,6 @@ def add():
 
 @app.route("/assignments/get_questions/<assignment_id>")
 def get_questions(assignment_id = 0):
-	if not validate_session(session):
-		return redirect("/login/")
-
 	data = {
 		"creator_id": 0,
 		"title": "Invalid Assignment",
