@@ -11,6 +11,9 @@ def validate_session(user_session):
 	if not user:
 		return clear_session(user_session)
 
+	if user.type != user_session.get("account_type"):
+		return clear_session(user_session)
+
 	return True, user
 
 def validate_session_type(user_session, type):
