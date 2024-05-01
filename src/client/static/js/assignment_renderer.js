@@ -276,9 +276,14 @@ export class AssignmentRenderer
 				}
 				builder.endElement()
 
-				builder.startElement("button") // TODO: Add functionality to this
+				builder.startElement("button")
 				{
 					builder.setProperty("innerHTML", "Take")
+
+					helper.hookElementEvent(builder.getTop(), "click", true, () =>
+					{
+						top.location = `/assignments/take/${assignment.getID()}`
+					})
 				}
 				builder.endElement()
 			}
