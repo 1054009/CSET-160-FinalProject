@@ -116,7 +116,7 @@ def to_json(id):
 			"options": options
 		})
 
-	return json.dumps(data)
+	return json.dumps(data, default = str)
 
 def from_json(data):
 	data = json.loads(data)
