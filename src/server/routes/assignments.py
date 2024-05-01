@@ -63,7 +63,7 @@ def get_questions(assignment_id = 0):
 			"questions": []
 		}
 
-	return to_json(assignment)
+	return to_json(assignment.id)
 
 @app.route("/assignments/edit/<assignment_id>")
 def edit_get(assignment_id = 0):
