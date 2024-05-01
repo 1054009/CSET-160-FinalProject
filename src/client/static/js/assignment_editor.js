@@ -49,6 +49,40 @@ g_Helper.hookEvent(window, "load", false, () =>
 		render(g_Renderer.getQuestionNumber())
 	})
 
+	g_Helper.hookElementEvent(document.querySelector("form"), "submit", true, () =>
+	{
+		const assignment_data = document.querySelector("input[name=assignment_data]")
+
+		const assignmentData = {
+			"title": g_Assignment.getTitle(),
+			"due_date": g_Assignment.getDueDate(),
+
+			"questions": []
+		}
+
+		for (const question of g_Assignment.getQuestions())
+		{
+			const options = []
+
+			for (const option of question.getOptions())
+				options.push({
+					"text": option.getText(),
+					"is_correct": option.getCorrect()
+				})
+
+			assignmentData["questions"].push({
+				"text": question.getText(),
+				"points": question.getPoints(),
+				"type": question.getType(),
+
+				"options": options
+			})
+		}
+
+		assignment_data.value = JSON.stringify(assignmentData)
+	})
+
+	// Setup assignment data
 	g_Assignment = new Assignment(ASSIGNMENT_ID)
 
 	g_Assignment.fetchQuestions(() =>
