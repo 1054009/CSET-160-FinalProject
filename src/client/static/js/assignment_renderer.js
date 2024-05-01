@@ -235,4 +235,55 @@ export class AssignmentRenderer
 	{
 		this.render(this.m_RenderTarget, editable)
 	}
+
+	renderOverview(target)
+	{
+		const helper = this.getHelper()
+		if (!helper.isValidElement(target))
+			return
+
+		const builder = this.m_Builder
+		const assignment = this.getAssignment()
+
+		this.m_RenderTarget = target
+
+		builder.start(target)
+		{
+			builder.setProperty("innerHTML", "")
+
+			builder.startElement("div")
+			{
+				builder.addClass("flexbox")
+				builder.addClass("flex_hspace")
+				builder.addClass("flex_vcenter")
+
+				builder.startElement("div")
+				{
+					builder.addClass("flexbox")
+					builder.addClass("flex_column")
+
+					builder.startElement("p")
+					{
+						builder.setProperty("innerHTML", assignment.getTitle())
+					}
+					builder.endElement()
+
+					builder.startElement("p")
+					{
+						builder.setProperty("innerHTML", assignment.getDueDate())
+					}
+					builder.endElement()
+				}
+				builder.endElement()
+
+				builder.startElement("button") // TODO: Add functionality to this
+				{
+					builder.setProperty("innerHTML", "Take")
+				}
+				builder.endElement()
+			}
+			builder.endElement()
+		}
+		builder.end()
+	}
 }
