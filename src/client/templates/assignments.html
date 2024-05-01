@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 
 {% block head %}
+{% if mode == "edit" %}
 <script type="module" src="{{ url_for('static', filename = 'js/assignment_editor.js') }}"></script>
+{% else %}
+<script type="module" src="{{ url_for('static', filename = 'js/assignment_taker.js') }}"></script>
+{% endif %}
 {% endblock %}
 
 {% block body %}
@@ -38,5 +42,9 @@ ASSIGNMENT_ID = {{ assignment_id }}
 	<input type="hidden" name="assignment_data">
 	<input type="submit" value="Apply Changes">
 </form>
+{% else %}
+<div id="assignment_render_target" class="flexbox flex_column flex_fill flex_gap" style="width: 50%;">
+
+</div>
 {% endif %}
 {% endblock %}
