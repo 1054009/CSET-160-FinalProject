@@ -70,13 +70,16 @@ export class AssignmentRenderer
 
 						builder.setProperty("checked", editable ? option.getCorrect() : false)
 
-						helper.hookElementEvent(builder.getTop(), "change", true, () =>
+						if (editable)
 						{
-							for (const option of question.getOptions())
-								option.setCorrect(false)
+							helper.hookElementEvent(builder.getTop(), "change", true, () =>
+							{
+								for (const option of question.getOptions())
+									option.setCorrect(false)
 
-							option.setCorrect(true)
-						})
+								option.setCorrect(true)
+							})
+						}
 					}
 					builder.endElement()
 
