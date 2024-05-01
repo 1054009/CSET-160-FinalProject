@@ -1,6 +1,8 @@
 import { Helper } from "./JSModules/helper.js"
 import { DOMBuilder } from "./JSModules/dom_builder.js"
 
+import { AssignmentQuestionOption } from "./assignment_models.js"
+
 export class AssignmentRenderer
 {
 	constructor()
@@ -43,6 +45,8 @@ export class AssignmentRenderer
 
 	multipleChoice(builder, question, editable)
 	{
+		const helper = this.getHelper()
+
 		builder.startElement("div")
 		{
 			builder.addClass("flexbox")
@@ -51,24 +55,34 @@ export class AssignmentRenderer
 
 			for (const option of question.getOptions())
 			{
+				const optionIndex = question.getOptions().indexOf(option)
+
 				builder.startElement("div")
 				{
 					builder.addClass("flexbox")
 					builder.addClass("flex_gap")
 					builder.addClass("flex_vcenter")
 
-					builder.startElement("input") // TODO: Make the inputs do something
+					builder.startElement("input")
 					{
 						builder.setAttribute("type", "radio")
 						builder.setAttribute("name", "question_option")
 
 						builder.setProperty("checked", editable ? option.getCorrect() : false)
+
+						helper.hookElementEvent(builder.getTop(), "change", true, () =>
+						{
+							for (const option of question.getOptions())
+								option.setCorrect(false)
+
+							option.setCorrect(true)
+						})
 					}
 					builder.endElement()
 
 					if (editable)
 					{
-						builder.startElement("input") // TODO: Make the inputs do something
+						builder.startElement("input")
 						{
 							builder.addClass("flex_fill")
 
@@ -77,12 +91,29 @@ export class AssignmentRenderer
 							builder.setAttribute("required", true)
 
 							builder.setProperty("value", option.getText())
+
+							// Why are there so many :/
+							const onchange = (_, self) =>
+							{
+								option.setText(self.value)
+							}
+
+							helper.hookElementEvent(builder.getTop(), "change", true, onchange)
+							helper.hookElementEvent(builder.getTop(), "keypress", true, onchange)
+							helper.hookElementEvent(builder.getTop(), "paste", true, onchange)
+							helper.hookElementEvent(builder.getTop(), "input", true, onchange)
 						}
 						builder.endElement()
 
-						builder.startElement("button") // TODO: Make the inputs do something
+						builder.startElement("button")
 						{
 							builder.setProperty("innerHTML", "Delete Option")
+
+							helper.hookElementEvent(builder.getTop(), "click", true, () =>
+							{
+								question.getOptions().splice(optionIndex, 1)
+								this.refresh(true)
+							})
 						}
 						builder.endElement()
 					}
@@ -100,7 +131,19 @@ export class AssignmentRenderer
 
 			builder.startElement("button")
 			{
-				builder.setProperty("innerHTML", "Add Option") // TODO: Make the inputs do something
+				builder.setProperty("innerHTML", "Add Option")
+
+				helper.hookElementEvent(builder.getTop(), "click", true, () =>
+				{
+					question.getOptions().push(new AssignmentQuestionOption(
+						{
+							"text": "New Option",
+							"is_correct": false
+						}
+					))
+
+					this.refresh(true)
+				})
 			}
 			builder.endElement()
 		}
@@ -124,6 +167,8 @@ export class AssignmentRenderer
 
 		const builder = this.m_Builder
 		const assignment = this.getAssignment()
+
+		this.m_RenderTarget = target
 
 		// Base
 		builder.start(target)
@@ -184,5 +229,10 @@ export class AssignmentRenderer
 			}
 		}
 		builder.end()
+	}
+
+	refresh(editable)
+	{
+		this.render(this.m_RenderTarget, editable)
 	}
 }
