@@ -74,6 +74,7 @@ export class AssignmentQuestion
 
 		this.m_strText = helper.getString(data.text)
 		this.m_strType = helper.getString(data.type)
+		this.m_iPoints = helper.getNumber(data.points, false, 0)
 
 		this.m_Options = []
 
@@ -98,6 +99,17 @@ export class AssignmentQuestion
 	getType()
 	{
 		return this.m_strType
+	}
+
+
+	getPoints()
+	{
+		return this.m_iPoints
+	}
+
+	setPoints(points)
+	{
+		this.m_iPoints = helper.getNumber(points, false, 0)
 	}
 
 	getOptions()
