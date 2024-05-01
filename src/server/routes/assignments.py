@@ -5,7 +5,7 @@ from flask import render_template, request, redirect, session
 
 from models import Assignment, Question, Option
 from scripts.user_util import get_user
-from scripts.session_util import validate_session_type
+from scripts.session_util import validate_session, validate_session_type
 from scripts.assignment_util import get_current_timestamp, create_assignment, get_assignment, create_question, create_option, to_json, from_json
 
 @app.route("/assignments/add/")
@@ -95,3 +95,19 @@ def edit_post():
 	from_json(assignment_data)
 
 	return redirect("/home/")
+
+@app.route("/assignments/take/<assignment_id>")
+def take_get(assignment_id = 0):
+	if not validate_session(session):
+		return redirect("/login/")
+
+	assignment = get_assignment(assignment_id)
+	if assignment is None:
+		return redirect("/home/") # TODO: Error
+
+	return render_template(
+		"assignments.html",
+
+		mode = "take",
+		assignment_id = assignment_id
+	)
