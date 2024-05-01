@@ -43,6 +43,12 @@ g_Helper.hookEvent(window, "load", false, () =>
 		render(g_Renderer.getQuestionCount())
 	})
 
+	g_Helper.hookElementEvent(document.querySelector("#btn_del_question"), "click", true, () =>
+	{
+		g_Assignment.getQuestions().splice(0, 1)
+		render(g_Renderer.getQuestionNumber())
+	})
+
 	g_Assignment = new Assignment(ASSIGNMENT_ID)
 
 	g_Assignment.fetchQuestions(() =>
