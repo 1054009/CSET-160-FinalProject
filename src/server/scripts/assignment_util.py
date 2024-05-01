@@ -2,6 +2,7 @@ from models import Assignment, Question, Option
 from session import database
 
 from datetime import datetime
+import json
 
 def get_current_timestamp():
 	return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -83,3 +84,68 @@ def get_option(id):
 		return options.filter(Option.id == id).first()
 	except:
 		return None
+
+def to_json(id):
+	assignment = get_assignment(id)
+
+	if assignment is None:
+		return "{}"
+
+	data = {
+		"creator_id": assignment.creator_id,
+		"title": assignment.title,
+		"due_date": assignment.due_date,
+
+		"questions": []
+	}
+
+	for question in assignment.questions:
+		options = []
+
+		for option in question.options:
+			options.append({
+				"text": option.text,
+				"is_correct": option.is_correct
+			})
+
+		data["questions"].append({
+			"text": question.text,
+			"points": question.points,
+			"type": question.type,
+
+			"options": options
+		})
+
+	return json.dumps(data)
+
+def from_json(data):
+	data = json.loads(data)
+
+	assignment = get_assignment(data.get("id"))
+	if assignment is None:
+		return "{}"
+
+	# Delete the old questions and options
+	for question in assignment.questions:
+		for option in question.options:
+			database.query(Option).filter(Option.id == option.id).delete()
+
+		database.query(Question).filter(Question.id == question.id).delete()
+
+	# Add the new stuff
+	for question in data.get("questions", []):
+		new_question = create_question(
+			assignment.id,
+			question.get("text", "invalid"),
+			question.get("points", 0),
+			question.get("type", "OPEN_ENDED")
+		)
+
+		for option in question.get("options", []):
+			create_option(
+				new_question.id,
+				option.get("text", "invalid"),
+				option.get("is_correct", False)
+			)
+
+	return assignment
