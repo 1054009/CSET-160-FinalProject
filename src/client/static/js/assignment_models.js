@@ -101,7 +101,6 @@ export class AssignmentQuestion
 		return this.m_strType
 	}
 
-
 	getPoints()
 	{
 		return this.m_iPoints
