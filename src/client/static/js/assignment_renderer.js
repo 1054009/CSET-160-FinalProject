@@ -129,23 +129,26 @@ export class AssignmentRenderer
 				builder.endElement()
 			}
 
-			builder.startElement("button")
+			if (editable)
 			{
-				builder.setProperty("innerHTML", "Add Option")
-
-				helper.hookElementEvent(builder.getTop(), "click", true, () =>
+				builder.startElement("button")
 				{
-					question.getOptions().push(new AssignmentQuestionOption(
-						{
-							"text": "New Option",
-							"is_correct": false
-						}
-					))
+					builder.setProperty("innerHTML", "Add Option")
 
-					this.refresh(true)
-				})
+					helper.hookElementEvent(builder.getTop(), "click", true, () =>
+					{
+						question.getOptions().push(new AssignmentQuestionOption(
+							{
+								"text": "New Option",
+								"is_correct": false
+							}
+						))
+
+						this.refresh(true)
+					})
+				}
+				builder.endElement()
 			}
-			builder.endElement()
 		}
 		builder.endElement()
 	}
