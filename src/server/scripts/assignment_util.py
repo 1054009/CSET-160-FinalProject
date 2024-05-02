@@ -105,11 +105,13 @@ def to_json(id):
 
 		for option in question.options:
 			options.append({
+				"id": option.id,
 				"text": option.text,
 				"is_correct": option.is_correct
 			})
 
 		data["questions"].append({
+			"id": question.id,
 			"text": question.text,
 			"points": question.points,
 			"type": question.type,
