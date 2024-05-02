@@ -171,6 +171,10 @@ class AttemptResponse(Base):
 		ForeignKey("assignment_attempts.id")
 	)
 
+	question_id:Mapped[int] = mapped_column(
+		ForeignKey("assignment_questions.id")
+	)
+
 	option_id:Mapped[str] = mapped_column(
 		ForeignKey("assignment_question_options.id"),
 
