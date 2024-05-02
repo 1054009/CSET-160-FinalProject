@@ -1,6 +1,8 @@
 from models import User
 from session import database
 
+import json
+
 def create_user(first_name, last_name, email_address, hashed_password, type):
 	try:
 		new_user = User(
@@ -25,3 +27,18 @@ def get_user(email_address):
 		return users.filter(User.email_address == email_address).first()
 	except:
 		return None
+
+def to_json(id):
+	user = get_user(id)
+
+	if user is None:
+		return "{}"
+
+	data = {
+		"first_name": user.first_name,
+		"last_name": user.last_name,
+		"email_adress": user.email_address,
+		"type": user.type
+	}
+
+	return json.dumps(data, default = str)
