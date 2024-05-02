@@ -227,6 +227,8 @@ export class AssignmentRenderer
 					builder.setAttribute("required", true)
 
 					builder.setProperty("value", assignment.getTitle())
+
+					// TODO: Handle input
 				}
 				builder.endElement()
 			}
@@ -252,6 +254,8 @@ export class AssignmentRenderer
 						builder.setAttribute("required", true)
 
 						builder.setProperty("value", question.getText())
+
+						// TODO: Handle input
 					}
 					builder.endElement()
 				}
