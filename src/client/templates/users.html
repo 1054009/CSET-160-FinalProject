@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block head %}
+<script type="module" src="{{ url_for('static', filename = 'js/users.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+<script>
+	USER_LIST = {{ user_list | safe | string }}
+</script>
+
+<div class="flexbox flex_column flex_gap" style="width: 25%;">
+
+</div>
+{% endblock %}
