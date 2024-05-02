@@ -173,6 +173,14 @@ export class AssignmentRenderer
 			// TODO: Maybe something else?
 		}
 		builder.endElement()
+
+		builder.startElement("button")
+		{
+			builder.setProperty("innerHTML", "Submit Answer")
+
+			// TODO: Input functionality
+		}
+		builder.endElement()
 	}
 
 	render(target, editable)
