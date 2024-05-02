@@ -130,10 +130,10 @@ def from_json(data):
 
 	# Delete the old questions and options
 	for question in assignment.questions:
-		for option in question.options:
-			database.query(Option).filter(Option.id == option.id).delete()
-
+		database.query(Option).filter(Option.question_id == question.id).delete()
 		database.query(Question).filter(Question.id == question.id).delete()
+
+	database.commit()
 
 	# Add the new stuff
 	for question in data.get("questions", []):
@@ -150,5 +150,7 @@ def from_json(data):
 				option.get("text", "invalid"),
 				option.get("is_correct", False)
 			)
+
+	database.commit()
 
 	return assignment
