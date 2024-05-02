@@ -175,6 +175,12 @@ class AttemptResponse(Base):
 		ForeignKey("assignment_question_options.id")
 	)
 
+	option_data:Mapped[str] = mapped_column(
+		TEXT,
+
+		nullable = True
+	)
+
 	is_graded:Mapped[int] = mapped_column(
 		BOOLEAN
 	)
