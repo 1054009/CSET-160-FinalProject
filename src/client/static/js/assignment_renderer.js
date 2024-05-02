@@ -43,7 +43,7 @@ export class AssignmentRenderer
 		return this.getAssignment().getQuestions().length
 	}
 
-	multipleChoice(builder, question, editable)
+	multipleChoice(builder, question, editable, submitCallback)
 	{
 		const helper = this.getHelper()
 
@@ -68,6 +68,7 @@ export class AssignmentRenderer
 						builder.setAttribute("type", "radio")
 						builder.setAttribute("name", "question_option")
 
+						builder.setProperty("m_Option", option)
 						builder.setProperty("checked", editable ? option.getCorrect() : false)
 
 						if (editable)
@@ -158,7 +159,17 @@ export class AssignmentRenderer
 				{
 					builder.setProperty("innerHTML", "Submit Answer")
 
-					// TODO: Input functionality
+					if (helper.isFunction(submitCallback))
+					{
+						helper.hookElementEvent(builder.getTop(), "click", true, () =>
+						{
+							const chosen = document.querySelector("input[type=radio][checked=true]")
+							if (!helper.isValidElement(chosen))
+								return submitCallback(question, null)
+
+							submitCallback(question, chosen.m_Option || null)
+						})
+					}
 				}
 			}
 			builder.endElement()
@@ -166,9 +177,9 @@ export class AssignmentRenderer
 		builder.endElement()
 	}
 
-	openEnded(builder, question, editable)
+	openEnded(builder, question, editable, submitCallback)
 	{
-		builder.startElement("textarea")
+		const textArea = builder.startElement("textarea")
 		{
 			// TODO: Maybe something else?
 		}
@@ -178,12 +189,19 @@ export class AssignmentRenderer
 		{
 			builder.setProperty("innerHTML", "Submit Answer")
 
-			// TODO: Input functionality
+			const helper = this.getHelper()
+			if (helper.isFunction(submitCallback))
+			{
+				helper.hookElementEvent(builder.getTop(), "click", true, () =>
+				{
+					submitCallback(question, textArea.value)
+				})
+			}
 		}
 		builder.endElement()
 	}
 
-	render(target, editable)
+	render(target, editable, submitCallback)
 	{
 		const helper = this.getHelper()
 		if (!helper.isValidElement(target))
@@ -247,9 +265,9 @@ export class AssignmentRenderer
 				}
 
 				if (question.getType() == "MULTIPLE_CHOICE")
-					this.multipleChoice(builder, question, editable)
+					this.multipleChoice(builder, question, editable, submitCallback)
 				else
-					this.openEnded(builder, question, editable)
+					this.openEnded(builder, question, editable, submitCallback)
 			}
 		}
 		builder.end()
