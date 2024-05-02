@@ -10,6 +10,9 @@ const g_Renderer = new AssignmentRenderer()
 
 g_Helper.hookEvent(window, "load", false, () =>
 {
+	// TODO: Figure out why this says "Invalid Assignment"
+	// TODO: Figure out why this causes a server error sometimes (???)
+
 	const assignment_list = document.querySelector("#assignment_list")
 
 	const overviewContainer = g_Builder.start(assignment_list)
@@ -21,8 +24,16 @@ g_Helper.hookEvent(window, "load", false, () =>
 
 			assignment.fetchQuestions(() =>
 			{
-				g_Renderer.setAssignment(assignment)
-				g_Renderer.renderOverview(overviewContainer)
+				g_Builder.startPush(overviewContainer)
+				{
+					g_Builder.startElement("div")
+					{
+						g_Renderer.setAssignment(assignment)
+						g_Renderer.renderOverview(g_Builder.getTop())
+					}
+					g_Builder.endElement()
+				}
+				g_Builder.endPop()
 			})
 		}
 	}
