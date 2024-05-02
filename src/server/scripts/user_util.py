@@ -43,9 +43,10 @@ def to_json(id):
 		return "{}"
 
 	data = {
+		"id": user.id,
 		"first_name": user.first_name,
 		"last_name": user.last_name,
-		"email_adress": user.email_address,
+		"email_address": user.email_address,
 		"type": user.type
 	}
 
