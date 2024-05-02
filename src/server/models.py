@@ -138,7 +138,7 @@ class Attempt(Base):
 		ForeignKey("users.id")
 	)
 
-	assignment_id:Mapped[str] = mapped_column(
+	assignment_id:Mapped[int] = mapped_column(
 		ForeignKey("assignments.id")
 	)
 
@@ -175,7 +175,7 @@ class AttemptResponse(Base):
 		ForeignKey("assignment_questions.id")
 	)
 
-	option_id:Mapped[str] = mapped_column(
+	option_id:Mapped[int] = mapped_column(
 		ForeignKey("assignment_question_options.id"),
 
 		nullable = True
