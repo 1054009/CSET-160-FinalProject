@@ -133,8 +133,6 @@ def from_json(data):
 		database.query(Option).filter(Option.question_id == question.id).delete()
 		database.query(Question).filter(Question.id == question.id).delete()
 
-	database.commit()
-
 	# Add the new stuff
 	for question in data.get("questions", []):
 		new_question = create_question(
