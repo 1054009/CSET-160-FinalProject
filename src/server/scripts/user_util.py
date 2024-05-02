@@ -28,8 +28,16 @@ def get_user(email_address):
 	except:
 		return None
 
+def get_user_by_id(id):
+	try:
+		users = database.query(User)
+
+		return users.filter(User.id == id).first()
+	except:
+		return None
+
 def to_json(id):
-	user = get_user(id)
+	user = get_user_by_id(id)
 
 	if user is None:
 		return "{}"
