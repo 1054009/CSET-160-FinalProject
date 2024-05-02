@@ -172,7 +172,9 @@ class AttemptResponse(Base):
 	)
 
 	option_id:Mapped[str] = mapped_column(
-		ForeignKey("assignment_question_options.id")
+		ForeignKey("assignment_question_options.id"),
+
+		nullable = True
 	)
 
 	option_data:Mapped[str] = mapped_column(
