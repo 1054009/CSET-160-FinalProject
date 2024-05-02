@@ -72,6 +72,7 @@ export class AssignmentQuestion
 	{
 		const helper = Helper.assignToObject(this)
 
+		this.m_iID = helper.getUnsignedNumber(data.id, false, 0)
 		this.m_strText = helper.getString(data.text)
 		this.m_strType = helper.getString(data.type)
 		this.m_iPoints = helper.getNumber(data.points, false, 0)
@@ -84,6 +85,11 @@ export class AssignmentQuestion
 			for (const optionData of data.options)
 				this.m_Options.push(new AssignmentQuestionOption(optionData))
 		}
+	}
+
+	getID()
+	{
+		return this.m_iID
 	}
 
 	getText()
@@ -123,8 +129,14 @@ export class AssignmentQuestionOption
 	{
 		const helper = Helper.assignToObject(this)
 
+		this.m_iID = helper.getUnsignedNumber(data.id, false, 0)
 		this.m_strText = helper.getString(data.text)
 		this.m_bCorrect = helper.getBoolean(data.is_correct)
+	}
+
+	getID()
+	{
+		return this.m_iID
 	}
 
 	getText()
