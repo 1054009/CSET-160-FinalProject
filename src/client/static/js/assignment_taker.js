@@ -31,7 +31,8 @@ function onSubmit(question, data)
 	// Go to the next question
 	if (g_Renderer.getQuestionNumber() == g_Renderer.getQuestionCount())
 	{
-		console.log(g_Submissions)
+		// TODO: Submit it actually
+		top.location = "/home/"
 	}
 	else
 		render(g_Renderer.getQuestionNumber() + 1)
