@@ -165,7 +165,8 @@ export class AssignmentRenderer
 
 					builder.setProperty("value", "Submit Answer")
 
-					helper.hookElementEvent(this.m_RenderTarget, "submit", true, (event) =>
+					// Can't use hookElementEvent because of stacking events
+					this.m_RenderTarget.onsubmit = (event) =>
 					{
 						const chosen = document.querySelector("input[type=radio]:checked")
 
@@ -192,7 +193,7 @@ export class AssignmentRenderer
 
 							return false
 						}
-					})
+					}
 				}
 				builder.endElement()
 			}
@@ -216,7 +217,7 @@ export class AssignmentRenderer
 
 			builder.setProperty("value", "Submit Answer")
 
-			helper.hookElementEvent(this.m_RenderTarget, "submit", true, (event) =>
+			this.m_RenderTarget.onsubmit = (event) =>
 			{
 				if (helper.isFunction(questionCallback))
 					questionCallback(question, textArea.value)
@@ -236,7 +237,7 @@ export class AssignmentRenderer
 
 					return false
 				}
-			})
+			}
 		}
 		builder.endElement()
 	}
