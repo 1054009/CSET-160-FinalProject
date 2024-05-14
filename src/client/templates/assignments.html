@@ -43,8 +43,8 @@ ASSIGNMENT_ID = {{ assignment_id }}
 	<input type="submit" value="Apply Changes">
 </form>
 {% else %}
-<div id="assignment_render_target" class="flexbox flex_column flex_fill flex_gap" style="width: 50%;">
+<form id="assignment_render_target" class="flexbox flex_column flex_fill flex_gap" style="width: 50%;" action="/assignments/submit/" method="POST">
 
-</div>
+</form>
 {% endif %}
 {% endblock %}

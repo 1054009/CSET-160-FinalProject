@@ -21,8 +21,6 @@ g_Helper.hookEvent(window, "load", false, () =>
 
 				g_Builder.startElement("p")
 				{
-					console.log(parsed)
-
 					g_Builder.setProperty(
 						"innerHTML",
 						`(${parsed.id}) ${parsed.first_name} ${parsed.last_name} ${parsed.email_address} ${parsed.type}`

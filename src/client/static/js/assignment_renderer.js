@@ -43,7 +43,7 @@ export class AssignmentRenderer
 		return this.getAssignment().getQuestions().length
 	}
 
-	multipleChoice(builder, question, editable, submitCallback)
+	multipleChoice(builder, question, editable, questionCallback, submitCallback)
 	{
 		const helper = this.getHelper()
 
@@ -137,9 +137,9 @@ export class AssignmentRenderer
 				builder.endElement()
 			}
 
-			builder.startElement("button")
+			if (editable)
 			{
-				if (editable)
+				builder.startElement("button")
 				{
 					builder.setProperty("innerHTML", "Add Option")
 
@@ -155,53 +155,93 @@ export class AssignmentRenderer
 						this.refresh(true)
 					})
 				}
-				else
-				{
-					builder.setProperty("innerHTML", "Submit Answer")
-
-					if (helper.isFunction(submitCallback))
-					{
-						helper.hookElementEvent(builder.getTop(), "click", true, () =>
-						{
-							const chosen = document.querySelector("input[type=radio][checked=true]")
-							if (!helper.isValidElement(chosen))
-								return submitCallback(question, null)
-
-							submitCallback(question, chosen.m_Option || null)
-						})
-					}
-				}
+				builder.endElement()
 			}
-			builder.endElement()
+			else
+			{
+				builder.startElement("input")
+				{
+					builder.setAttribute("type", "submit")
+
+					builder.setProperty("value", "Submit Answer")
+
+					helper.hookElementEvent(this.m_RenderTarget, "submit", true, (event) =>
+					{
+						const chosen = document.querySelector("input[type=radio][checked=true]")
+
+						if (helper.isFunction(questionCallback))
+						{
+							if (!helper.isValidElement(chosen))
+								questionCallback(question, null)
+							else
+								questionCallback(question, chosen.m_Option || null)
+						}
+
+						if (this.getQuestionNumber() >= this.getQuestionCount())
+						{
+							if (helper.isFunction(submitCallback))
+								submitCallback()
+						}
+						else
+						{
+							// Go to the next question
+							this.setQuestionNumber(this.getQuestionNumber() + 1)
+							this.refresh(false, questionCallback, submitCallback)
+
+							event.preventDefault()
+
+							return false
+						}
+					})
+				}
+				builder.endElement()
+			}
 		}
 		builder.endElement()
 	}
 
-	openEnded(builder, question, editable, submitCallback)
+	openEnded(builder, question, editable, questionCallback, submitCallback)
 	{
+		const helper = this.getHelper()
+
 		const textArea = builder.startElement("textarea")
 		{
 			// TODO: Maybe something else?
 		}
 		builder.endElement()
 
-		builder.startElement("button")
+		builder.startElement("input")
 		{
-			builder.setProperty("innerHTML", "Submit Answer")
+			builder.setAttribute("type", "submit")
 
-			const helper = this.getHelper()
-			if (helper.isFunction(submitCallback))
+			builder.setProperty("value", "Submit Answer")
+
+			helper.hookElementEvent(this.m_RenderTarget, "submit", true, (event) =>
 			{
-				helper.hookElementEvent(builder.getTop(), "click", true, () =>
+				if (helper.isFunction(questionCallback))
+					questionCallback(question, textArea.value)
+
+				if (this.getQuestionNumber() >= this.getQuestionCount())
 				{
-					submitCallback(question, textArea.value)
-				})
-			}
+					if (helper.isFunction(submitCallback))
+						submitCallback()
+				}
+				else
+				{
+					// Go to the next question
+					this.setQuestionNumber(this.getQuestionNumber() + 1)
+					this.refresh(false, questionCallback, submitCallback)
+
+					event.preventDefault()
+
+					return false
+				}
+			})
 		}
 		builder.endElement()
 	}
 
-	render(target, editable, submitCallback)
+	render(target, editable, questionCallback, submitCallback)
 	{
 		const helper = this.getHelper()
 		if (!helper.isValidElement(target))
@@ -269,17 +309,17 @@ export class AssignmentRenderer
 				}
 
 				if (question.getType() == "MULTIPLE_CHOICE")
-					this.multipleChoice(builder, question, editable, submitCallback)
+					this.multipleChoice(builder, question, editable, questionCallback, submitCallback)
 				else
-					this.openEnded(builder, question, editable, submitCallback)
+					this.openEnded(builder, question, editable, questionCallback, submitCallback)
 			}
 		}
 		builder.end()
 	}
 
-	refresh(editable)
+	refresh(editable, questionCallback, submitCallback)
 	{
-		this.render(this.m_RenderTarget, editable)
+		this.render(this.m_RenderTarget, editable, questionCallback, submitCallback)
 	}
 
 	renderOverview(target)

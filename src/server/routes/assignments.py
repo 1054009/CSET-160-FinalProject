@@ -111,3 +111,9 @@ def take_get(assignment_id = 0):
 		mode = "take",
 		assignment_id = assignment_id
 	)
+
+@app.route("/assignments/submit/", methods = [ "POST" ])
+def submit_post():
+	print(request.form)
+
+	return redirect("/home/")
