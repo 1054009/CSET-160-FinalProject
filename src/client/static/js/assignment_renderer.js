@@ -167,7 +167,7 @@ export class AssignmentRenderer
 
 					helper.hookElementEvent(this.m_RenderTarget, "submit", true, (event) =>
 					{
-						const chosen = document.querySelector("input[type=radio][checked=true]")
+						const chosen = document.querySelector("input[type=radio]:checked")
 
 						if (helper.isFunction(questionCallback))
 						{
