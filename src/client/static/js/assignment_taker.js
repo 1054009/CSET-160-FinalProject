@@ -37,6 +37,8 @@ function onSubmit()
 	if (g_Helper.isValidElement(existing))
 		existing.remove()
 
+	g_Submissions["assignment_id"] = g_Assignment.getID()
+
 	g_Builder.start(document.querySelector("#assignment_render_target"))
 	{
 		g_Builder.startElement("input")

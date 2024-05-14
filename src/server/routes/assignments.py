@@ -2,8 +2,9 @@ from session import database
 
 from app import app
 from flask import render_template, request, redirect, session
+import json
 
-from models import Assignment, Question, Option
+from models import Assignment, Question, Option, Attempt, AttemptResponse
 from scripts.user_util import get_user
 from scripts.session_util import validate_session, validate_session_type
 from scripts.assignment_util import get_current_timestamp, create_assignment, get_assignment, create_question, create_option, to_json, from_json
@@ -112,8 +113,41 @@ def take_get(assignment_id = 0):
 		assignment_id = assignment_id
 	)
 
+# The most rushed, jank, insecure code immaginable
 @app.route("/assignments/submit/", methods = [ "POST" ])
 def submit_post():
-	print(request.form)
+	form = json.loads(request.form.get("assignment_data"))
+
+	attempt = Attempt(
+		assignment_id = int(form.get("assignment_id")),
+		submitter_id = session.get("user_id"),
+		submission_time = get_current_timestamp(),
+		is_graded = False
+	)
+	database.add(attempt)
+	database.flush()
+
+	del form["assignment_id"]
+
+	for question, option in form.items():
+		option_id = option
+		option_data = str(option)
+
+		try:
+			option_id = int(option)
+		except:
+			option_id = None
+
+		res = AttemptResponse(
+			attempt_id = attempt.id,
+			question_id = int(question),
+			option_id = option_id,
+			option_data = option_data,
+			is_graded = False
+		)
+
+		database.add(res)
+
+	database.commit()
 
 	return redirect("/home/")

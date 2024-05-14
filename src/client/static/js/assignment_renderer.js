@@ -43,6 +43,7 @@ export class AssignmentRenderer
 		return this.getAssignment().getQuestions().length
 	}
 
+	// Last-minute rush jank coming up
 	multipleChoice(builder, question, editable, questionCallback, submitCallback)
 	{
 		const helper = this.getHelper()
